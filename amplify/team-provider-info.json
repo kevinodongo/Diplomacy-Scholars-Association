@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-diplomacyscholarsass-dev-31528-authRole",
+            "UnauthRoleArn": "arn:aws:iam::410792531564:role/amplify-diplomacyscholarsass-dev-31528-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::410792531564:role/amplify-diplomacyscholarsass-dev-31528-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-diplomacyscholarsass-dev-31528-deployment",
+            "UnauthRoleName": "amplify-diplomacyscholarsass-dev-31528-unauthRole",
+            "StackName": "amplify-diplomacyscholarsass-dev-31528",
+            "StackId": "arn:aws:cloudformation:us-east-1:410792531564:stack/amplify-diplomacyscholarsass-dev-31528/5d56acd0-970a-11ea-aa07-0e763951b664",
+            "AmplifyAppId": "d9jga1c4cflyw"
+        }
+    }
+}

@@ -2,7 +2,7 @@ import Home from "../views/Home.vue";
 const routes = [
   // home
   {
-    path: "/dispak",
+    path: "/",
     name: "Home",
     component: Home
   },
