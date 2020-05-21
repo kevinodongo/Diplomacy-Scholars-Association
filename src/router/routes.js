@@ -46,6 +46,7 @@ const routes = [
     path: "/members-dashboard",
     name: "Dashboard",
     component: () => import("../components/Dispak/Dashboard.vue"),
+    meta: { requiresAuth: true },
     children: [
       {
         path: "/alerts",
@@ -69,6 +70,7 @@ const routes = [
     path: "/admin",
     name: "Admin",
     component: () => import("../components/Dispak/Admin.vue"),
+    meta: { requiresAuth: true },
     children: [
       {
         path: "/profile",

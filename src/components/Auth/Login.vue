@@ -1,6 +1,11 @@
 <template>
   <div class="login">
     <Toolbar />
+    <v-progress-linear
+      :active="loading"
+      :indeterminate="loading"
+      color="indigo"
+    ></v-progress-linear>
     <v-row>
       <v-col cols="12" md="4"></v-col>
       <v-col cols="12" md="4">
@@ -50,19 +55,35 @@
 <script>
 import Footer from "../parts/Footer";
 import Toolbar from "../parts/Toolbar";
+import { Auth } from "aws-amplify";
 export default {
   components: { Footer, Toolbar },
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      loading: false
     };
   },
   methods: {
-    logIn() {
-      this.$router.push({
-        name: "Profile"
+    async logIn() {
+      this.loading = true;
+      const { username, password } = this;
+      await Auth.signIn(username, password).then(user => {
+        /* login logic checking on idToken */
+        if (
+          user.signInUserSession.idToken.payload["custom:roles"] === "member"
+        ) {
+          this.$router.push({
+            name: "Statements"
+          });
+        } else {
+          this.$router.push({
+            name: "Profile"
+          });
+        }
       });
+      this.loading = false;
     }
   }
 };

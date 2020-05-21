@@ -1,0 +1,78 @@
+type Diplomacy @model {
+  id: ID!
+  name: String!
+  user: [User] @connection(name: "DiplomacyUser")
+  subscriber: [Subscriber] @connection(name: "DiplomacySubscriber")
+}
+
+type User @model {
+   id: ID!
+   username: String!
+   email: String
+   membership: String
+   dob: String
+   phone: String
+   gender: String
+   address: String
+   nationality: String
+   identification: String
+   createdAt: String
+   updatedAt: String
+   diplomacy: Diplomacy @connection(name: "DiplomacyUser")
+   education: [Education] @connection(name: "UserEducation")
+   attachment: [Attachment] @connection(name: "UserAttachment")
+   certificate: [Certificate] @connection(name: "UserCertificate")
+   blog: [Blog] @connection(name: "UserBlog")
+}
+
+type Education @model {
+  id: ID!
+  institution: String!
+  qualification: String
+  duration: String
+  createdAt: String
+  updatedAt: String
+  user: User @connection(name: "UserEducation")
+}
+
+type Subscriber @model {
+  id: ID!
+  name: String!
+  email: String
+  createdAt: String
+  updatedAt: String
+  diplomacy: Diplomacy @connection(name: "DiplomacySubscriber")
+}
+
+type Attachment @model {
+  id: ID!
+  title: String!
+  memberID: String
+  subject: String
+  attachment: String
+  createdAt: String
+  updatedAt: String
+  user: User @connection(name: "UserAttachment")
+}
+
+type Certificate @model {
+  id: ID!
+  member: String!
+  memberID: String
+  attachment: String
+  createdAt: String
+  updatedAt: String
+  user: User @connection(name: "UserCertificate")
+}
+
+type Blog @model {
+  id: ID!
+  member: String!
+  memberID: String
+  title: String
+  subject: String
+  content: String
+  createdAt: String
+  updatedAt: String
+  user: User @connection(name: "UserBlog")
+}

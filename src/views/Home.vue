@@ -118,6 +118,7 @@
               outlined
               dense=""
               name="name"
+              v-model="name"
               placeholder="First Name"
             ></v-text-field>
             <v-text-field
@@ -125,9 +126,10 @@
               outlined
               dense
               name="name"
+              v-model="email"
               placeholder="Email"
             ></v-text-field>
-            <v-btn color="grey" dark>subscribe</v-btn>
+            <v-btn color="grey" dark @click="subscribe">subscribe</v-btn>
           </v-col>
           <v-col cols="12" md="4">
             <v-sheet elevation="2" width="100%" color="#37474F" class="pa-3">
@@ -213,6 +215,11 @@
 <script>
 import Footer from "../components/parts/Footer";
 import Toolbar from "../components/parts/Toolbar";
+import { API, graphqlOperation } from "aws-amplify";
+import { createSubscriber } from "../graphql/mutations";
+import { listAttachments, listBlogs } from "../graphql/queries";
+import Swal from "sweetalert2";
+import { uuid } from "vue-uuid";
 export default {
   components: { Toolbar, Footer },
   data() {
@@ -243,8 +250,41 @@ export default {
         {
           src: "https://i.imgur.com/VQZn3n0.jpg"
         }
-      ]
+      ],
+      email: "",
+      name: ""
     };
+  },
+  methods: {
+    async getDetails() {
+      // get attachments
+      const attach = await API.graphql(graphqlOperation(listAttachments));
+      const attachList = attach.data.listAttachments.items;
+      if (attachList && attachList.length !== 0) {
+        this.attachments = attachList;
+      }
+      // get blogs
+      const blog = await API.graphql(graphqlOperation(listBlogs));
+      const blogList = blog.data.listBlogs.items;
+      if (blogList && blogList.length !== 0) {
+        this.blog = blogList;
+      }
+    },
+    async subscribe() {
+      const data = {
+        id: uuid.v4(),
+        name: this.name,
+        email: this.email,
+        createdAt: new Date()
+      };
+      await API.graphql(graphqlOperation(createSubscriber, { input: data }));
+      Swal.fire({
+        text: "Thank you for Subscribing",
+        icon: "success",
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
+        footer: "<div>Diplomacy Scholars Association of Kenya &copy; 2020</div>"
+      });
+    }
   }
 };
 </script>

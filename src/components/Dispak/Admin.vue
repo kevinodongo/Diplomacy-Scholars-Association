@@ -4,7 +4,7 @@
       <v-sheet>
         <v-row justify="center">
           <v-avatar class="mt-3" color="grey" size="164">
-            <v-img src="https://i.imgur.com/IkXxcUO.png"></v-img>
+            <v-img src="https://i.imgur.com/qvnZqVr.jpg"></v-img>
           </v-avatar>
           <v-card-text class="text-center">
             <div style="text-transform: uppercase">John Waweru</div>
@@ -121,14 +121,19 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
 export default {
+  async beforeCreate() {
+    this.user = await Auth.currentAuthenticatedUser();
+  },
   data() {
     return {
-      //
+      user: {}
     };
   },
   methods: {
-    logOut() {
+    async logOut() {
+      await Auth.signOut();
       this.$router.push({
         name: "Home"
       });
