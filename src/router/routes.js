@@ -29,6 +29,12 @@ const routes = [
     name: "Members",
     component: () => import("../components/Members/Members.vue")
   },
+  // member search
+  {
+    path: "/dipsak-members-search",
+    name: "Search",
+    component: () => import("../components/Members/Search.vue")
+  },
   // contacts
   {
     path: "/dipsak-contacts",
@@ -37,9 +43,59 @@ const routes = [
   },
   // member dashboard
   {
-    path: "/dashboard",
+    path: "/members-dashboard",
     name: "Dashboard",
-    component: () => import("../components/Dispak/Dashboard.vue")
+    component: () => import("../components/Dispak/Dashboard.vue"),
+    children: [
+      {
+        path: "/alerts",
+        name: "Alerts",
+        component: () => import("../components/Dispak/@utils/Alerts")
+      },
+      {
+        path: "/certificates",
+        name: "Certificates",
+        component: () => import("../components/Dispak/@utils/Certificates")
+      },
+      {
+        path: "/statements",
+        name: "Statements",
+        component: () => import("../components/Dispak/@utils/Statements")
+      },
+    ]
+  },
+  // admin
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () => import("../components/Dispak/Admin.vue"),
+    children: [
+      {
+        path: "/profile",
+        name: "Profile",
+        component: () => import("../components/Dispak/@utils/Profile")
+      },
+      {
+        path: "/all-members",
+        name: "ListMembers",
+        component: () => import("../components/Dispak/@utils/List")
+      },
+      {
+        path: "/uploads",
+        name: "Uploads",
+        component: () => import("../components/Dispak/@utils/Uploads")
+      },
+      {
+        path: "/to-do",
+        name: "Todo",
+        component: () => import("../components/Dispak/@utils/To-do")
+      },
+      {
+        path: "/blog",
+        name: "Blog",
+        component: () => import("../components/Dispak/@utils/Blog")
+      },
+    ]
   },
   // member settings
   {
@@ -53,6 +109,36 @@ const routes = [
     name: "Calender",
     component: () => import("../components/Dispak/Calender.vue")
   },
-];
+  // gallery
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: () => import("../components/parts/Gallery")
+  },
+  // news
+  {
+    path: "/news",
+    name: "News",
+    component: () => import("../components/parts/News")
+  },
+  // upcoming
+  {
+    path: "/upcoming-events",
+    name: "Events",
+    component: () => import("../components/parts/Events")
+  },
+  // publication
+  {
+    path: "/publication",
+    name: "Publication",
+    component: () => import("../components/parts/Publication")
+  },
+  // blog
+  {
+    path: "/blog",
+    name: "Blog",
+    component: () => import("../components/parts/Blog")
+  },
 
+];
 export default routes;

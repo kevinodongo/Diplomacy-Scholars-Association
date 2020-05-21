@@ -4,14 +4,12 @@
       <v-sheet>
         <v-row justify="center">
           <v-avatar class="mt-3" color="grey" size="164">
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-            ></v-img>
+            <v-img src="https://i.imgur.com/IkXxcUO.png"></v-img>
           </v-avatar>
           <v-card-text class="text-center">
-            <div style="font-size: 18px;">John Waweru</div>
-            <div class="mt-1">
-              <v-btn small outlined color="success">Honorary Member</v-btn>
+            <div style="text-transform: uppercase">John Waweru</div>
+            <div class="mt-2">
+              <v-btn small outlined color="success">Admin</v-btn>
             </div>
           </v-card-text>
         </v-row>
@@ -20,44 +18,63 @@
           <v-list-item
             link
             active-class="indigo--text"
-            :to="{ name: 'Alerts' }"
+            :to="{ name: 'Profile' }"
           >
             <v-list-item-icon>
-              <v-icon>mdi-bell-outline</v-icon>
+              <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
-              Alerts
+            <v-list-item-title style="text-transform: uppercase">
+              Profile
             </v-list-item-title>
           </v-list-item>
           <v-list-item
             link
             active-class="indigo--text"
-            :to="{ name: 'Certificates' }"
+            :to="{ name: 'ListMembers' }"
           >
             <v-list-item-icon>
-              <v-icon>mdi-file-outline</v-icon>
+              <v-icon>mdi-account-group-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
-              Certificates
+            <v-list-item-title style="text-transform: uppercase">
+              Members
             </v-list-item-title>
           </v-list-item>
           <v-list-item
             link
             active-class="indigo--text"
-            :to="{ name: 'Statements' }"
+            :to="{ name: 'Uploads' }"
           >
             <v-list-item-icon>
-              <v-icon>mdi-finance</v-icon>
+              <v-icon>mdi-file-upload-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
-              Statements
+            <v-list-item-title style="text-transform: uppercase">
+              Uploads
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item link active-class="indigo--text" :to="{ name: 'Blog' }">
+            <v-list-item-icon>
+              <v-icon>mdi-pencil-circle-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title style="text-transform: uppercase">
+              Blog
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item link active-class="indigo--text" :to="{ name: 'Todo' }">
+            <v-list-item-icon>
+              <v-icon>mdi-clipboard-text-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title style="text-transform: uppercase">
+              To-do
             </v-list-item-title>
           </v-list-item>
           <v-list-item link active-class="indigo" @click="logOut">
             <v-list-item-icon>
               <v-icon color="red">mdi-logout</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="red--text">
+            <v-list-item-title
+              class="red--text"
+              style="text-transform: uppercase"
+            >
               Log out
             </v-list-item-title>
           </v-list-item>

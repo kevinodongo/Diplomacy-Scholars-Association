@@ -1,147 +1,204 @@
 <template>
   <div class="toolbar">
-    <v-sheet>
-      <v-container class="fill-height" grid-list-xs>
-        <v-row no-gutters>
-          <v-col cols="12" class="d-flex d-sm-none">
-            <div>
-              <v-btn icon @click="showButtons = true">
-                <v-icon color="primary">mdi-view-grid</v-icon>
-              </v-btn>
-            </div>
-          </v-col>
-          <v-col cols="12">
-            <v-row align="center" justify="center">
-              <img
-                src="https://i.imgur.com/IK8G3cb.jpg"
-                alt="logo"
-                height="120"
-              />
-            </v-row>
-          </v-col>
-          <v-col cols="12" class="d-flex d-sm-none">
-            <v-card-text class="text-center">
-              <div class="association">
-                Diplomacy Scholars Association of Kenya
-              </div>
-            </v-card-text>
-          </v-col>
-          <v-col cols="12" class="d-none d-sm-flex">
-            <v-row align="center" justify="center">
-              <div class="association mt-3">
-                Diplomacy Scholars Association of Kenya
-              </div>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet color="rgb(10, 10, 226)" class="d-flex d-sm-none" tile>
-      <v-card-text>
-        <div class="contact">
-          <v-icon small dark>mdi-phone</v-icon>(+254) 20 2728 444 / 726 243 005
-          / 780 496 588
+    <v-navigation-drawer v-model="drawer" temporary absolute right width="320">
+      <v-toolbar flat dense>
+        <v-btn @click="drawer = false" icon><v-icon>mdi-close</v-icon></v-btn>
+      </v-toolbar>
+      <v-list>
+        <template v-for="item in items" :to="item.to">
+          <v-row v-if="item.heading" :key="item.heading" align="center">
+            <v-col cols="6">
+              <v-subheader v-if="item.heading">
+                {{ item.heading }}
+              </v-subheader>
+            </v-col>
+            <v-col cols="6" class="text-center">
+              <a href="#!" class="body-2 black--text">EDIT</a>
+            </v-col>
+          </v-row>
+          <v-list-group
+            v-else-if="item.children"
+            :key="item.text"
+            :to="item.to"
+            v-model="item.model"
+            prepend-icon=""
+            :append-icon="item.model ? item.icon : item['icon-alt']"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title
+                  style="text-transform: uppercase"
+                  class="font-weight-light"
+                >
+                  {{ item.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item v-for="(child, i) in item.children" :key="i" link>
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title class="font-weight-light">
+                  {{ child.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+          <v-list-item v-else :key="item.text" link>
+            <v-list-item-content>
+              <v-list-item-title
+                style="text-transform: uppercase"
+                class="font-weight-light"
+              >
+                {{ item.text }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
+    <!--Small Screen-->
+    <div class="d-flex d-md-none">
+      <v-sheet width="100%">
+        <v-card-actions>
+          <img
+            src="https://i.imgur.com/IK8G3cb.jpg"
+            alt="logo"
+            height="60"
+            class="ml-2"
+          />
+          <v-spacer></v-spacer>
+          <div class="mr-2">
+            <v-btn
+              elevation="1"
+              color="indigo"
+              fab
+              small
+              @click="drawer = true"
+            >
+              <v-icon color="white">mdi-view-headline</v-icon>
+            </v-btn>
+          </div>
+        </v-card-actions>
+        <!--X-small Screen Only-->
+        <div class="d-flex d-sm-none">
+          <div
+            class="diplomacy-small indigo--text font-weight-black ml-2 mt-2 mb-2"
+          >
+            DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+          </div>
         </div>
-        <div class="contact">
-          <v-icon small dark>mdi-share</v-icon>info@boraqs.or.ke
+        <!--/end-->
+        <!--X-small Screen Only-->
+        <div class="d-none d-sm-flex">
+          <div
+            class="diplomacy-medium indigo--text font-weight-black ml-2 mt-2 mb-2"
+          >
+            DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+          </div>
         </div>
-      </v-card-text>
-    </v-sheet>
-    <v-sheet
-      tile
-      class="d-flex d-sm-none"
-      v-if="showButtons"
-      color="rgb(10, 10, 226)"
-    >
+        <!--/end-->
+      </v-sheet>
+    </div>
+    <div class="d-flex d-md-none">
+      <v-sheet dark color="indigo" tile width="100%">
+        <v-card-text>
+          <div class="text-end mr-1" style="font-size: 12px">
+            <v-icon small dark class="mr-1">mdi-phone</v-icon>(+254) 20 2728 444
+            / 726 243 005
+          </div>
+          <div class="text-end mr-1" style="font-size: 12px">
+            <v-icon small dark class="ml-1 mr-1">mdi-share</v-icon
+            >info@dipsak.org
+          </div>
+        </v-card-text>
+      </v-sheet>
+    </div>
+    <!--/end-->
+    <!--Large Screen-->
+    <v-sheet class="d-none d-md-flex">
       <v-container fluid>
-        <v-row>
-          <v-btn
-            dark
-            text
-            :to="{ name: 'Home' }"
-            class="ml-2"
-            active-class="black"
-            >Home</v-btn
+        <v-card-actions>
+          <img
+            src="https://i.imgur.com/IK8G3cb.jpg"
+            alt="logo"
+            height="100"
+            class="ml-3"
+          />
+          <v-card-title
+            class="diplomacy font-weight-black indigo--text d-none d-md-flex"
+            style="text-transform: uppercase"
+            >Diplomacy Scholars Association of Kenya</v-card-title
           >
-          <v-btn
-            dark
-            text
-            :to="{ name: 'About' }"
-            class="ml-2"
-            active-class="black"
-            >About us</v-btn
-          >
-          <v-btn dark text :to="{ name: 'Members' }" active-class="black"
-            >Members</v-btn
-          >
-          <v-btn dark text :to="{ name: 'Contacts' }" active-class="black"
-            >Contacts</v-btn
-          >
-          <v-btn dark text :to="{ name: 'Login' }" active-class="black"
-            >Members Login</v-btn
-          >
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet color="rgb(10, 10, 226)" class="d-none d-sm-flex">
-      <v-container grid-list-xs>
-        <v-row>
-          <v-col cols="12" md="10" lg="9">
-            <v-btn
-              text
-              class="mr-1"
-              :to="{ name: 'Home' }"
-              dark
-              active-class="black"
-              >Home</v-btn
-            >
-            <v-btn
-              text
-              class="mr-1"
-              :to="{ name: 'About' }"
-              dark
-              active-class="black"
-              >About us</v-btn
-            >
-            <v-btn
-              text
-              class="mr-1"
-              :to="{ name: 'Members' }"
-              dark
-              active-class="black"
-              >Members</v-btn
-            >
-            <v-btn
-              text
-              class="mr-1"
-              :to="{ name: 'Contacts' }"
-              dark
-              active-class="black"
-              >Contacts</v-btn
-            >
-            <v-btn
-              text
-              class="mr-1"
-              :to="{ name: 'Login' }"
-              dark
-              active-class="black"
-              >Members Login</v-btn
-            >
-          </v-col>
-          <v-col cols="12" md="2" lg="3">
-            <div>
-              <div class="contact">
-                <v-icon small dark>mdi-phone</v-icon>(+254) 20 2728 444 / 726
-                243 005
-              </div>
-              <div class="contact">
-                <v-icon small dark>mdi-share</v-icon>info@boraqs.or.ke
-              </div>
+          <v-spacer></v-spacer>
+          <div class="primary--text">
+            <div class="d-none d-lg-flex">
+              <v-icon small dark>mdi-phone</v-icon>(+254) 20 2728 444 / 000162
             </div>
-          </v-col>
-        </v-row>
+            <div class="d-none d-lg-flex">
+              <v-icon small dark>mdi-share</v-icon>info@dipsak.org
+            </div>
+          </div>
+        </v-card-actions>
       </v-container>
     </v-sheet>
+    <v-app-bar color="indigo" dark class="d-none d-md-flex">
+      <v-col cols="1"></v-col>
+      <v-toolbar-items>
+        <v-btn text to="/">Home</v-btn>
+        <v-btn text to="/about-dipsak">About us</v-btn>
+        <v-menu open-on-hover bottom offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">Members</v-btn>
+          </template>
+          <v-sheet width="200" dark>
+            <v-list-item
+              v-for="member in members"
+              :key="member.id"
+              dense
+              active-class="white--text"
+              :to="member.to"
+            >
+              <v-list-item-title v-text="member.title"></v-list-item-title>
+            </v-list-item>
+          </v-sheet>
+        </v-menu>
+        <v-menu open-on-hover bottom offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">Publications</v-btn>
+          </template>
+          <v-sheet width="250" dark>
+            <v-list-item
+              v-for="publication in publications"
+              :key="publication.id"
+              dense
+              :to="publication.to"
+            >
+              <v-list-item-title v-text="publication.title"></v-list-item-title>
+            </v-list-item>
+          </v-sheet>
+        </v-menu>
+        <v-menu open-on-hover bottom offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on">Media</v-btn>
+          </template>
+          <v-sheet width="200" dark>
+            <v-list-item
+              v-for="media in medias"
+              :key="media.id"
+              dense
+              :to="media.to"
+            >
+              <v-list-item-title v-text="media.title"></v-list-item-title>
+            </v-list-item>
+          </v-sheet>
+        </v-menu>
+        <v-btn text to="/dipsak-contacts">Contact us</v-btn>
+        <v-btn text to="/dipsak-member-login">Members Login</v-btn>
+      </v-toolbar-items>
+    </v-app-bar>
+    <!--/ end-->
   </div>
 </template>
 
@@ -149,13 +206,127 @@
 export default {
   data() {
     return {
-      showButtons: false
+      drawer: false,
+      showButtons: false,
+      publications: [
+        {
+          title: "Africa Research Notes",
+          to: "publication"
+        },
+        {
+          title: "API Policy Briefs",
+          to: "publication"
+        },
+        {
+          title: "Africa Policy Review",
+          to: "publication"
+        },
+        {
+          title: "Books and Monographs",
+          to: "publication"
+        }
+      ],
+      members: [
+        {
+          title: "Search",
+          to: "dipsak-members-search"
+        },
+        {
+          title: "Board Members",
+          to: "dipsak-members"
+        }
+      ],
+      medias: [
+        {
+          title: "Upcoming Events",
+          to: "upcoming-events"
+        },
+        {
+          title: "News",
+          to: "news"
+        },
+        {
+          title: "Gallery",
+          to: "gallery"
+        }
+      ],
+      items: [
+        { icon: "mdi-contacts", text: "Home", to: "home" },
+        { icon: "mdi-history", text: "About us", to: "about-dipsak" },
+        {
+          icon: "mdi-chevron-up",
+          "icon-alt": "mdi-chevron-down",
+          text: "Members",
+          model: false,
+          children: [
+            {
+              text: "Search",
+              to: "dipsak-members"
+            },
+            {
+              text: "Board Members",
+              to: "dipsak-members-search"
+            }
+          ]
+        },
+        {
+          icon: "mdi-chevron-up",
+          "icon-alt": "mdi-chevron-down",
+          text: "Publications",
+          model: false,
+          children: [
+            { text: "Africa Research Notes", to: "publication" },
+            { text: "API Policy Briefs", to: "publication" },
+            { text: "Africa Policy Review", to: "publication" },
+            { text: "Books and Monographs", to: "publication" }
+          ]
+        },
+        {
+          icon: "mdi-chevron-up",
+          "icon-alt": "mdi-chevron-down",
+          text: "Media",
+          model: false,
+          children: [
+            {
+              text: "Upcoming Events",
+              to: "upcoming-events"
+            },
+            {
+              text: "News",
+              to: "news"
+            },
+            {
+              text: "Gallery",
+              to: "gallery"
+            }
+          ]
+        },
+        { icon: "mdi-email", text: "Contacts", to: "dipsak-contacts" },
+        {
+          icon: "mdi-login-variant",
+          text: "Members Login",
+          to: "dipsak-member-login"
+        },
+        { icon: "mdi-login-variant", text: "Donate" }
+      ]
     };
   }
 };
 </script>
 
 <style lang="css">
+.diplomacy {
+  font-size: 28px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.diplomacy-small {
+  font-size: 13px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.diplomacy-medium {
+  font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
 .association {
   font-size: 30px;
   text-transform: uppercase;

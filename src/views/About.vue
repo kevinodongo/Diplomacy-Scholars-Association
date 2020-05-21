@@ -1,21 +1,28 @@
 <template>
   <div class="about-page">
-    <v-container grid-list-xs>
-      <div class="mt-5 about">About</div>
-      <div v-for="(item, index) in items" :key="index" class="mb-3">
-        <div
-          class="red--text body-1 font-weight-bold"
-          style="text-transform: uppercase"
-          v-text="item.title"
-        ></div>
-        <div class="mt-1" v-text="item.subject"></div>
-      </div>
-    </v-container>
+    <Toolbar />
+    <v-sheet min-height="635">
+      <v-container grid-list-xs>
+        <div class="mt-5 about">About</div>
+        <div v-for="(item, index) in items" :key="index" class="mb-3">
+          <div
+            class="red--text body-1 font-weight-bold"
+            style="text-transform: uppercase"
+            v-text="item.title"
+          ></div>
+          <div class="mt-1" v-text="item.subject"></div>
+        </div>
+      </v-container>
+    </v-sheet>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from "../components/parts/Footer";
+import Toolbar from "../components/parts/Toolbar";
 export default {
+  components: { Footer, Toolbar },
   data() {
     return {
       items: [

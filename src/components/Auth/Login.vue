@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <Toolbar />
     <v-row>
       <v-col cols="12" md="4"></v-col>
       <v-col cols="12" md="4">
@@ -11,21 +12,24 @@
               <v-text-field
                 class="mt-2"
                 name="name"
-                label="Username"
+                placeholder="Username"
                 dense
                 single-line
                 outlined
+                v-model="username"
               ></v-text-field>
               <div class="caption font-weight-bold">Password</div>
               <v-text-field
                 class="mt-2"
                 dense
-                name="name"
-                label="Password"
+                name="password"
+                placeholder="Password"
                 single-line
                 outlined
+                type="password"
+                v-model="password"
               ></v-text-field>
-              <v-btn color="primary" block large>login</v-btn>
+              <v-btn color="primary" block large @click="logIn">login</v-btn>
               <div class="text-end mt-3">
                 <v-btn text>
                   <span style="text-transform: capitalize"
@@ -39,5 +43,27 @@
       </v-col>
       <v-col cols="12" md="4"></v-col>
     </v-row>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from "../parts/Footer";
+import Toolbar from "../parts/Toolbar";
+export default {
+  components: { Footer, Toolbar },
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    logIn() {
+      this.$router.push({
+        name: "Profile"
+      });
+    }
+  }
+};
+</script>

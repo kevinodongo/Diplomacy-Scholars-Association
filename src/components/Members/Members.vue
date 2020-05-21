@@ -1,5 +1,6 @@
 <template>
   <div class="members">
+    <Toolbar />
     <v-sheet>
       <v-container grid-list-xs>
         <v-card-text
@@ -12,8 +13,8 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/PcFTyG3.jpg"
-                height="350px"
+                src="https://i.imgur.com/qvnZqVr.jpg"
+                height="300px"
               ></v-img>
               <v-card-text>
                 <div class="title black--text">Andy Waweru</div>
@@ -28,8 +29,8 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/PsXreqA.jpg"
-                height="350px"
+                src="https://i.imgur.com/qvnZqVr.jpg"
+                height="300px"
               ></v-img>
               <v-card-text>
                 <div class="title black--text">Wendy Achieng</div>
@@ -44,8 +45,8 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/9crMFz4.jpg"
-                height="350px"
+                src="https://i.imgur.com/qvnZqVr.jpg"
+                height="300px"
               ></v-img>
               <v-card-text>
                 <div class="title black--text">Sarah Mutua</div>
@@ -60,8 +61,8 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/jlUBrBw.jpg"
-                height="350px"
+                src="https://i.imgur.com/qvnZqVr.jpg"
+                height="300px"
               ></v-img>
               <v-card-text>
                 <div class="title black--text">Greg Saleh</div>
@@ -76,5 +77,19 @@
         </v-row>
       </v-container>
     </v-sheet>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from "../parts/Footer";
+import Toolbar from "../parts/Toolbar";
+export default {
+  components: { Footer, Toolbar },
+  data() {
+    return {
+      //
+    };
+  }
+};
+</script>

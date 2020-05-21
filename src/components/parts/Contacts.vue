@@ -1,5 +1,6 @@
 <template>
   <div class="contacts">
+    <Toolbar />
     <v-container grid-list-xs>
       <v-row>
         <v-col cols="12" md="6">
@@ -100,5 +101,19 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from "./Footer";
+import Toolbar from "./Toolbar";
+export default {
+  components: { Footer, Toolbar },
+  data() {
+    return {
+      //
+    };
+  }
+};
+</script>
