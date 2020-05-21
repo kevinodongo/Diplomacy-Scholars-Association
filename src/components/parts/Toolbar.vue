@@ -5,7 +5,7 @@
         <v-btn @click="drawer = false" icon><v-icon>mdi-close</v-icon></v-btn>
       </v-toolbar>
       <v-list>
-        <template v-for="item in items" :to="item.to">
+        <template v-for="item in items">
           <v-row v-if="item.heading" :key="item.heading" align="center">
             <v-col cols="6">
               <v-subheader v-if="item.heading">
@@ -19,7 +19,6 @@
           <v-list-group
             v-else-if="item.children"
             :key="item.text"
-            :to="item.to"
             v-model="item.model"
             prepend-icon=""
             :append-icon="item.model ? item.icon : item['icon-alt']"
@@ -34,7 +33,12 @@
                 </v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              link
+              :to="child.to"
+            >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
@@ -45,7 +49,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="item.text" link>
+          <v-list-item v-else :key="item.text" link :to="item.to">
             <v-list-item-content>
               <v-list-item-title
                 style="text-transform: uppercase"
@@ -174,6 +178,7 @@
               :key="publication.id"
               dense
               :to="publication.to"
+              active-class="white--text"
             >
               <v-list-item-title v-text="publication.title"></v-list-item-title>
             </v-list-item>
@@ -189,6 +194,7 @@
               :key="media.id"
               dense
               :to="media.to"
+              active-class="white--text"
             >
               <v-list-item-title v-text="media.title"></v-list-item-title>
             </v-list-item>
@@ -276,9 +282,9 @@ export default {
           model: false,
           children: [
             { text: "Africa Research Notes", to: "publication" },
-            { text: "API Policy Briefs", to: "publication" },
-            { text: "Africa Policy Review", to: "publication" },
-            { text: "Books and Monographs", to: "publication" }
+            { text: "API Policy Briefs" },
+            { text: "Africa Policy Review" },
+            { text: "Books and Monographs" }
           ]
         },
         {

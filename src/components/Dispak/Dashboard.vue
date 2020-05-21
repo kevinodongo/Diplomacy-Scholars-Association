@@ -9,7 +9,7 @@
             ></v-img>
           </v-avatar>
           <v-card-text class="text-center">
-            <div style="font-size: 18px;">John Waweru</div>
+            <div style="text-transform: capitalize">John Waweru</div>
             <div class="mt-1">
               <v-btn small outlined color="success">Honorary Member</v-btn>
             </div>
@@ -25,7 +25,7 @@
             <v-list-item-icon>
               <v-icon>mdi-bell-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
+            <v-list-item-title style="text-transform: uppercase">
               Alerts
             </v-list-item-title>
           </v-list-item>
@@ -37,7 +37,7 @@
             <v-list-item-icon>
               <v-icon>mdi-file-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
+            <v-list-item-title style="text-transform: uppercase">
               Certificates
             </v-list-item-title>
           </v-list-item>
@@ -49,7 +49,7 @@
             <v-list-item-icon>
               <v-icon>mdi-finance</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>
+            <v-list-item-title style="text-transform: uppercase">
               Statements
             </v-list-item-title>
           </v-list-item>
@@ -57,7 +57,10 @@
             <v-list-item-icon>
               <v-icon color="red">mdi-logout</v-icon>
             </v-list-item-icon>
-            <v-list-item-title class="red--text">
+            <v-list-item-title
+              class="red--text"
+              style="text-transform: uppercase"
+            >
               Log out
             </v-list-item-title>
           </v-list-item>

@@ -1,14 +1,8 @@
 <template>
   <div class="login">
     <Toolbar />
-    <v-progress-linear
-      :active="loading"
-      :indeterminate="loading"
-      color="indigo"
-    ></v-progress-linear>
-    <v-row>
-      <v-col cols="12" md="4"></v-col>
-      <v-col cols="12" md="4">
+    <v-row justify="center">
+      <v-col cols="12" sm="6" md="4">
         <v-container grid-list-xs>
           <v-card class="mt-5" elevation="5">
             <v-card-text class="pa-10">
@@ -34,7 +28,17 @@
                 type="password"
                 v-model="password"
               ></v-text-field>
-              <v-btn color="primary" block large @click="logIn">login</v-btn>
+              <v-btn
+                color="primary"
+                block
+                large
+                @click="logIn"
+                :loading="loading"
+                >login
+                <template v-slot:loader>
+                  <span>Confirming....</span>
+                </template></v-btn
+              >
               <div class="text-end mt-3">
                 <v-btn text>
                   <span style="text-transform: capitalize"
@@ -46,7 +50,7 @@
           </v-card>
         </v-container>
       </v-col>
-      <v-col cols="12" md="4"></v-col>
+     
     </v-row>
     <Footer />
   </div>
@@ -60,10 +64,21 @@ export default {
   components: { Footer, Toolbar },
   data() {
     return {
+      loader: null,
       username: "",
       password: "",
       loading: false
     };
+  },
+  watch: {
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+
+      setTimeout(() => (this[l] = false), 3000);
+
+      this.loader = null;
+    }
   },
   methods: {
     async logIn() {

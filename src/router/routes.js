@@ -135,12 +135,7 @@ const routes = [
     name: "Publication",
     component: () => import("../components/parts/Publication")
   },
-  // blog
-  {
-    path: "/blog",
-    name: "Blog",
-    component: () => import("../components/parts/Blog")
-  },
+  // 
 
 ];
 export default routes;
