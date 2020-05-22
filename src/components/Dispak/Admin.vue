@@ -1,6 +1,6 @@
 <template>
   <div class="Dashboard">
-    <v-navigation-drawer height="100%" app>
+    <v-navigation-drawer height="100%" app v-model="drawer" clipped>
       <v-sheet>
         <v-row justify="center">
           <v-avatar class="mt-3" color="grey" size="164">
@@ -82,7 +82,10 @@
       </v-sheet>
     </v-navigation-drawer>
     <v-toolbar flat>
-      <h4 class="indigo--text">DIPLOMACY SCHOLARS ASSOCIATION OF KENYA</h4>
+      <v-btn small fab elevation="1" @click="drawer = !drawer"
+        ><v-icon color="indigo">mdi-view-headline</v-icon></v-btn
+      >
+      <h4 class="indigo--text ml-3">DIPLOMACY SCHOLARS ASSOCIATION OF KENYA</h4>
       <v-spacer></v-spacer>
       <v-menu
         offset-y
@@ -128,7 +131,8 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {},
+      drawer: true
     };
   },
   methods: {
