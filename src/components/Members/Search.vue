@@ -68,6 +68,36 @@ export default {
           email: "info@email.com",
           phone: "0725999157",
           nationality: "Kenyan"
+        },
+        {
+          name: "Stephen Wanderu",
+          membership: "Founding Member",
+          gender: "M",
+          education: "Phd",
+          address: "1421 Nairobi",
+          email: "info@email.com",
+          phone: "0725999157",
+          nationality: "Kenyan"
+        },
+        {
+          name: "Winnie Sitati",
+          membership: "Founding Member",
+          gender: "M",
+          education: "Phd",
+          address: "1421 Nairobi",
+          email: "info@email.com",
+          phone: "0725999157",
+          nationality: "Kenyan"
+        },
+        {
+          name: "Paul kipkorir",
+          membership: "Founding Member",
+          gender: "M",
+          education: "Phd",
+          address: "1421 Nairobi",
+          email: "info@email.com",
+          phone: "0725999157",
+          nationality: "Kenyan"
         }
       ]
     };

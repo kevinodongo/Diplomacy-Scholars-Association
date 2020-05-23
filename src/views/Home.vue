@@ -1,7 +1,17 @@
 <template>
   <div class="home">
+    <div id="btn">
+      <v-btn color="#3B5998" dark href="#" target="blank" tile
+        ><v-icon>mdi-facebook</v-icon></v-btn
+      >
+      <div class="mt-1">
+        <v-btn color="#55ACEE" dark href="#" target="blank" tile
+          ><v-icon>mdi-twitter</v-icon></v-btn
+        >
+      </div>
+    </div>
     <Toolbar />
-    <v-carousel :show-arrows="false" hide-delimiters cycle height="670">
+    <v-carousel :show-arrows="false" hide-delimiters cycle height="600">
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
@@ -39,7 +49,7 @@
               <v-row no-gutters>
                 <v-col cols="12" md="2">
                   <v-sheet height="100" width="100" elevation="1" color="grey">
-                    <div v-text="n.publication"></div>
+                    <img :src="n.src" width="100%" height="100%" />
                   </v-sheet>
                 </v-col>
                 <v-col cols="12" md="10">
@@ -64,7 +74,15 @@
             >
               News & Events
             </v-card-title>
-            <v-sheet height="300" width="300" color="grey"></v-sheet>
+            <v-sheet height="300" width="300">
+              <v-img src="https://i.imgur.com/4sxbhDN.jpg" width="300">
+                <v-container class="fill-height">
+                  <v-row justify="center" align="center">
+                    <v-btn color="success" dark>Read more</v-btn>
+                  </v-row>
+                </v-container>
+              </v-img>
+            </v-sheet>
           </v-col>
         </v-row>
       </v-container>
@@ -89,24 +107,24 @@
       <v-container fluid>
         <v-slide-group multiple show-arrows>
           <v-slide-item
-            v-for="n in 10"
+            v-for="n in events"
             :key="n"
             v-slot:default="{ active, toggle }"
           >
             <v-sheet
               class="mx-2"
               height="500"
-              width="400"
+              width="550"
               :input-value="active"
               @click="toggle"
-              color="grey"
             >
+              <img :src="n.src" width="550" height="500" />
             </v-sheet>
           </v-slide-item>
         </v-slide-group>
       </v-container>
     </v-sheet>
-    <v-sheet min-height="400" color="indigo" dark>
+    <v-sheet min-height="400" color="indigo" dark tile>
       <v-container grid-list-xs>
         <v-row class="mt-10">
           <v-col cols="12" md="8">
@@ -156,19 +174,7 @@
         </v-row>
       </v-container>
     </v-sheet>
-    <v-sheet height="400">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.847588640023!2d36.807210314701344!3d-1.2639196990781183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17a9143913cb%3A0x89539b2856619478!2sGallant%20Mall!5e0!3m2!1sen!2ske!4v1590052216863!5m2!1sen!2ske"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        style="border:0;"
-        allowfullscreen=""
-        aria-hidden="false"
-        tabindex="0"
-      ></iframe>
-    </v-sheet>
-    <v-sheet min-height="350" color="secondary" class="pa-3" dark>
+    <v-sheet min-height="350" color="secondary" class="pa-3" dark tile>
       <v-container class="fill-height" grid-list-xs>
         <v-row class="mt-10">
           <v-col cols="12" md="6">
@@ -230,13 +236,13 @@ export default {
           title: "Lorem ipsum dolor sit amet consectetur",
           text:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci dolores voluptates reprehenderit. Labore fugit ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam quis,",
-          publication: 1
+          src: "https://i.imgur.com/ii8HeF2.jpg"
         },
         {
           title: "Lorem ipsum dolor sit amet consectetur",
           text:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci dolores voluptates reprehenderit. Labore fugit ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam quis,",
-          publication: 1
+          src: "https://i.imgur.com/ii8HeF2.jpg"
         }
       ],
       items: [
@@ -250,6 +256,13 @@ export default {
         {
           src: "https://i.imgur.com/VQZn3n0.jpg"
         }
+      ],
+      events: [
+        { src: "https://i.imgur.com/7OrdCoj.jpg" },
+        { src: "https://i.imgur.com/OEvy19U.jpg" },
+        { src: "https://i.imgur.com/1xZBiR0.jpg" },
+        { src: "https://i.imgur.com/Xb2ngez.jpg" },
+        { src: "https://i.imgur.com/MgLkT47.jpg" }
       ],
       email: "",
       name: ""
@@ -317,5 +330,11 @@ export default {
 .about-text {
   font-size: 16px;
   font-weight: 200;
+}
+#btn {
+  position: fixed;
+  top: 10%;
+  right: 0px;
+  z-index: 99;
 }
 </style>

@@ -13,7 +13,7 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/qvnZqVr.jpg"
+                src="https://i.imgur.com/jlUBrBw.jpg"
                 height="300px"
               ></v-img>
               <v-card-text>
@@ -29,7 +29,7 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/qvnZqVr.jpg"
+                src="https://i.imgur.com/9crMFz4.jpg"
                 height="300px"
               ></v-img>
               <v-card-text>
@@ -45,7 +45,7 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/qvnZqVr.jpg"
+                src="https://i.imgur.com/PsXreqA.jpg"
                 height="300px"
               ></v-img>
               <v-card-text>
@@ -61,7 +61,7 @@
           <v-col cols="12" sm="3">
             <v-card width="100%">
               <v-img
-                src="https://i.imgur.com/qvnZqVr.jpg"
+                src="https://i.imgur.com/PcFTyG3.jpg"
                 height="300px"
               ></v-img>
               <v-card-text>

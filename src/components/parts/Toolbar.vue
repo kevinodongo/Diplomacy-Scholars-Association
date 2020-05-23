@@ -65,86 +65,65 @@
     <!--Small Screen-->
     <div class="d-flex d-md-none">
       <v-sheet width="100%">
-        <v-card-actions>
+        <div class="ml-2 mt-2">
+          <v-btn elevation="1" color="white" fab small @click="drawer = true">
+            <v-icon color="indigo">mdi-view-headline</v-icon>
+          </v-btn>
+        </div>
+        <v-row justify="center">
           <img
             src="https://i.imgur.com/IK8G3cb.jpg"
             alt="logo"
-            height="60"
-            class="ml-2"
+            height="90"
+            class="mt-2"
           />
-          <v-spacer></v-spacer>
-          <div class="mr-2">
-            <v-btn
-              elevation="1"
-              color="indigo"
-              fab
-              small
-              @click="drawer = true"
-            >
-              <v-icon color="white">mdi-view-headline</v-icon>
-            </v-btn>
-          </div>
-        </v-card-actions>
+        </v-row>
         <!--X-small Screen Only-->
-        <div class="d-flex d-sm-none">
-          <div
-            class="diplomacy-small indigo--text font-weight-black ml-2 mt-2 mb-2"
-          >
-            DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+        <v-row justify="center">
+          <div class="d-flex d-sm-none">
+            <div
+              class="diplomacy-small indigo--text font-weight-black ml-2 mt-2 mb-2"
+            >
+              DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+            </div>
           </div>
-        </div>
+        </v-row>
         <!--/end-->
         <!--X-small Screen Only-->
-        <div class="d-none d-sm-flex">
-          <div
-            class="diplomacy-medium indigo--text font-weight-black ml-2 mt-2 mb-2"
-          >
-            DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+        <v-row justify="center">
+          <div class="d-none d-sm-flex">
+            <div
+              class="diplomacy-medium indigo--text font-weight-black ml-2 mt-2 mb-2"
+            >
+              DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
+            </div>
           </div>
-        </div>
+        </v-row>
         <!--/end-->
       </v-sheet>
     </div>
     <div class="d-flex d-md-none">
-      <v-sheet dark color="indigo" tile width="100%">
-        <v-card-text>
-          <div class="text-end mr-1" style="font-size: 12px">
-            <v-icon small dark class="mr-1">mdi-phone</v-icon>(+254) 20 2728 444
-            / 726 243 005
-          </div>
-          <div class="text-end mr-1" style="font-size: 12px">
-            <v-icon small dark class="ml-1 mr-1">mdi-share</v-icon
-            >info@dipsak.org
-          </div>
-        </v-card-text>
-      </v-sheet>
+      <v-sheet dark color="indigo" tile width="100%" height="40"> </v-sheet>
     </div>
     <!--/end-->
     <!--Large Screen-->
     <v-sheet class="d-none d-md-flex">
-      <v-container fluid>
-        <v-card-actions>
+      <v-container fluid class="fill-height">
+        <v-row justify="center">
           <img
             src="https://i.imgur.com/IK8G3cb.jpg"
             alt="logo"
-            height="100"
-            class="ml-3"
+            height="130"
+            class="mt-3"
           />
+        </v-row>
+        <v-row justify="center">
           <v-card-title
             class="diplomacy font-weight-black indigo--text d-none d-md-flex"
             style="text-transform: uppercase"
             >Diplomacy Scholars Association of Kenya</v-card-title
           >
-          <v-spacer></v-spacer>
-          <div class="primary--text">
-            <div class="d-none d-lg-flex">
-              <v-icon small dark>mdi-phone</v-icon>(+254) 20 2728 444 / 000162
-            </div>
-            <div class="d-none d-lg-flex">
-              <v-icon small dark>mdi-share</v-icon>info@dipsak.org
-            </div>
-          </div>
-        </v-card-actions>
+        </v-row>
       </v-container>
     </v-sheet>
     <v-app-bar color="indigo" dark class="d-none d-md-flex">
@@ -216,19 +195,7 @@ export default {
       showButtons: false,
       publications: [
         {
-          title: "Africa Research Notes",
-          to: "publication"
-        },
-        {
-          title: "API Policy Briefs",
-          to: "publication"
-        },
-        {
-          title: "Africa Policy Review",
-          to: "publication"
-        },
-        {
-          title: "Books and Monographs",
+          title: "Publications",
           to: "publication"
         }
       ],
@@ -322,15 +289,15 @@ export default {
 
 <style lang="css">
 .diplomacy {
-  font-size: 28px;
+  font-size: 40px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .diplomacy-small {
-  font-size: 13px;
+  font-size: 14px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .diplomacy-medium {
-  font-size: 16px;
+  font-size: 23px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .association {
