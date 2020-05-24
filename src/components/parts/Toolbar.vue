@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <v-navigation-drawer v-model="drawer" temporary absolute right width="320">
+    <v-navigation-drawer v-model="drawer" app width="320">
       <v-toolbar flat dense>
         <v-btn @click="drawer = false" icon><v-icon>mdi-close</v-icon></v-btn>
       </v-toolbar>
@@ -65,7 +65,7 @@
     <!--Small Screen-->
     <div class="d-flex d-md-none">
       <v-sheet width="100%">
-        <div class="ml-2 mt-2">
+        <div class="ml-3 mt-2">
           <v-btn elevation="1" color="white" fab small @click="drawer = true">
             <v-icon color="indigo">mdi-view-headline</v-icon>
           </v-btn>
@@ -224,7 +224,7 @@ export default {
         }
       ],
       items: [
-        { icon: "mdi-contacts", text: "Home", to: "home" },
+        { icon: "mdi-contacts", text: "Home", to: "/" },
         { icon: "mdi-history", text: "About us", to: "about-dipsak" },
         {
           icon: "mdi-chevron-up",

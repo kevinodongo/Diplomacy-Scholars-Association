@@ -1,19 +1,9 @@
 <template>
   <div class="footer">
-    <v-footer dark padless app class="d-flex d-sm-none">
+    <v-footer dark padless app>
       <v-card class="flex" flat tile>
         <v-container grid-list-xs>
-          <div class="white--text text-end">
-            Copyright &copy; {{ new Date().getFullYear() }} —
-            <strong>Diplomacy Scholars Association of Kenya</strong>
-          </div>
-        </v-container>
-      </v-card>
-    </v-footer>
-    <v-footer dark padless class="d-none d-sm-flex">
-      <v-card class="flex" flat tile>
-        <v-container grid-list-xs>
-          <div class="white--text text-end">
+          <div class="white--text text-end caption">
             Copyright &copy; {{ new Date().getFullYear() }} —
             <strong>Diplomacy Scholars Association of Kenya</strong>
           </div>

@@ -1,24 +1,22 @@
 <template>
   <div class="home">
-    <div id="btn">
-      <v-btn color="#3B5998" dark href="#" target="blank" tile
-        ><v-icon>mdi-facebook</v-icon></v-btn
-      >
+    <div class="icon-bar">
+      <v-btn tile color="#3B5998" dark><v-icon>mdi-facebook</v-icon></v-btn>
       <div class="mt-1">
-        <v-btn color="#55ACEE" dark href="#" target="blank" tile
-          ><v-icon>mdi-twitter</v-icon></v-btn
-        >
+        <v-btn dark color="#55ACEE" tile><v-icon>mdi-twitter</v-icon></v-btn>
       </div>
     </div>
     <Toolbar />
-    <v-carousel :show-arrows="false" hide-delimiters cycle height="600">
-      <v-carousel-item
-        v-for="(item, i) in items"
-        :key="i"
-        :src="item.src"
-      ></v-carousel-item>
-    </v-carousel>
-    <v-sheet min-height="500">
+    <v-sheet tile>
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="600">
+        <v-carousel-item
+          v-for="(item, i) in items"
+          :key="i"
+          :src="item.src"
+        ></v-carousel-item>
+      </v-carousel>
+    </v-sheet>
+    <v-sheet min-height="500" tile>
       <v-container grid-list-xs>
         <div
           class="text-center headline indigo--text font-weight-regular mt-10"
@@ -103,7 +101,7 @@
         </v-col>
       </v-row>
     </v-sheet>
-    <v-sheet min-height="500" class="mx-auto">
+    <v-sheet min-height="500" class="mx-auto" tile>
       <v-container fluid>
         <v-slide-group multiple show-arrows>
           <v-slide-item
@@ -214,12 +212,20 @@
         </v-row>
       </v-container>
     </v-sheet>
-    <Footer />
+    <v-footer dark padless>
+      <v-card class="flex" flat tile>
+        <v-container grid-list-xs>
+          <div class="white--text text-end caption">
+            Copyright &copy; {{ new Date().getFullYear() }} —
+            <strong>Diplomacy Scholars Association of Kenya</strong>
+          </div>
+        </v-container>
+      </v-card>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import Footer from "../components/parts/Footer";
 import Toolbar from "../components/parts/Toolbar";
 import { API, graphqlOperation } from "aws-amplify";
 import { createSubscriber } from "../graphql/mutations";
@@ -227,7 +233,7 @@ import { listAttachments, listBlogs } from "../graphql/queries";
 import Swal from "sweetalert2";
 import { uuid } from "vue-uuid";
 export default {
-  components: { Toolbar, Footer },
+  components: { Toolbar },
   data() {
     return {
       model: null,
@@ -331,10 +337,10 @@ export default {
   font-size: 16px;
   font-weight: 200;
 }
-#btn {
+.icon-bar {
   position: fixed;
   top: 10%;
-  right: 0px;
+  right: 2px;
   z-index: 99;
 }
 </style>
