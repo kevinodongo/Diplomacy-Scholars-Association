@@ -4,15 +4,12 @@
       <v-sheet>
         <v-row justify="center">
           <v-avatar class="mt-3" color="grey" size="164">
-            <v-img src="https://i.imgur.com/qvnZqVr.jpg"></v-img>
+            <v-img src="https://i.imgur.com/IK8G3cb.jpg"></v-img>
           </v-avatar>
-          <v-card-text class="text-center">
-            <div style="text-transform: uppercase">John Waweru</div>
-            <div class="mt-2">
-              <v-btn small outlined color="success">Admin</v-btn>
-            </div>
-          </v-card-text>
         </v-row>
+        <v-card-text class="text-center">
+          <div class="indigo--text">ADMIN SECTION</div>
+        </v-card-text>
         <v-divider class="py-3"></v-divider>
         <v-list class="pa-2">
           <v-list-item
@@ -51,6 +48,18 @@
               Uploads
             </v-list-item-title>
           </v-list-item>
+          <v-list-item
+            link
+            active-class="indigo--text"
+            :to="{ name: 'Events' }"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-calendar</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title style="text-transform: uppercase">
+              Events
+            </v-list-item-title>
+          </v-list-item>
           <v-list-item link active-class="indigo--text" :to="{ name: 'Blog' }">
             <v-list-item-icon>
               <v-icon>mdi-pencil-circle-outline</v-icon>
@@ -59,7 +68,12 @@
               Blog
             </v-list-item-title>
           </v-list-item>
-          <v-list-item link active-class="indigo--text" :to="{ name: 'Todo' }">
+          <v-list-item
+            link
+            active-class="indigo--text"
+            :to="{ name: 'Todo' }"
+            v-if="mainadmin"
+          >
             <v-list-item-icon>
               <v-icon>mdi-clipboard-text-outline</v-icon>
             </v-list-item-icon>
@@ -128,9 +142,16 @@ import { Auth } from "aws-amplify";
 export default {
   async beforeCreate() {
     this.user = await Auth.currentAuthenticatedUser();
+    if (
+      this.user.signInUserSession.idToken.payload["custom:roles"] ===
+      "mainadmin"
+    ) {
+      this.mainadmin = true;
+    }
   },
   data() {
     return {
+      mainadmin: null,
       user: {},
       drawer: true
     };

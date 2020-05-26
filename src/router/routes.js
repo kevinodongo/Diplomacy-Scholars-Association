@@ -88,6 +88,11 @@ const routes = [
         component: () => import("../components/Dispak/@utils/Uploads")
       },
       {
+        path: "/events",
+        name: "Events",
+        component: () => import("../components/Dispak/@utils/Events")
+      },
+      {
         path: "/to-do",
         name: "Todo",
         component: () => import("../components/Dispak/@utils/To-do")
@@ -117,16 +122,10 @@ const routes = [
     name: "Gallery",
     component: () => import("../components/parts/Gallery")
   },
-  // news
-  {
-    path: "/news",
-    name: "News",
-    component: () => import("../components/parts/News")
-  },
   // upcoming
   {
     path: "/upcoming-events",
-    name: "Events",
+    name: "UpcomingEvents",
     component: () => import("../components/parts/Events")
   },
   // publication

@@ -23,7 +23,40 @@
 <script>
 import Footer from "../parts/Footer";
 import Toolbar from "../parts/Toolbar";
+import { API, graphqlOperation } from "aws-amplify";
+import { listPublications } from "../../graphql/queries";
+var _ = require("lodash");
 export default {
-  components: { Footer, Toolbar }
+  components: { Footer, Toolbar },
+  data() {
+    return {
+      publications: []
+    };
+  },
+  mounted() {
+    this.getDetails();
+  },
+  methods: {
+    async getDetails() {
+      const publications = await API.graphql(
+        graphqlOperation(listPublications)
+      );
+      const publicationsList = publications.data.listPublications.items;
+      if (publicationsList && publicationsList.length !== 0) {
+        publicationsList.forEach(e => {
+          const response = publicationsList.map(e => {
+            return Storage.get(e.attachment);
+          });
+          Promise.all(response).then(results => {
+            results.forEach(image => {
+              e.image = image;
+            });
+          });
+          const arr = this.publications.concat(e);
+          this.publications = _.uniqBy(arr, "id");
+        });
+      }
+    }
+  }
 };
 </script>

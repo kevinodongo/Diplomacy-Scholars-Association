@@ -23,6 +23,7 @@ export const createDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -31,6 +32,52 @@ export const createDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -61,6 +108,7 @@ export const updateDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -69,6 +117,52 @@ export const updateDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -99,6 +193,7 @@ export const deleteDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -107,6 +202,52 @@ export const deleteDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -133,6 +274,7 @@ export const createUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -142,11 +284,24 @@ export const createUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -157,20 +312,19 @@ export const createUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -181,10 +335,20 @@ export const createUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -211,6 +375,7 @@ export const updateUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -220,11 +385,24 @@ export const updateUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -235,20 +413,19 @@ export const updateUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -259,10 +436,20 @@ export const updateUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -289,6 +476,7 @@ export const deleteUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -298,11 +486,24 @@ export const deleteUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -313,20 +514,19 @@ export const deleteUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -337,10 +537,20 @@ export const deleteUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -357,6 +567,7 @@ export const createEducation = /* GraphQL */ `
     createEducation(input: $input, condition: $condition) {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -374,6 +585,7 @@ export const createEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -384,10 +596,13 @@ export const createEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -402,6 +617,7 @@ export const updateEducation = /* GraphQL */ `
     updateEducation(input: $input, condition: $condition) {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -419,6 +635,7 @@ export const updateEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -429,10 +646,13 @@ export const updateEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -447,6 +667,7 @@ export const deleteEducation = /* GraphQL */ `
     deleteEducation(input: $input, condition: $condition) {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -464,6 +685,7 @@ export const deleteEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -474,10 +696,13 @@ export const deleteEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -504,6 +729,18 @@ export const createSubscriber = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
     }
   }
@@ -526,6 +763,18 @@ export const updateSubscriber = /* GraphQL */ `
           nextToken
         }
         subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
           nextToken
         }
       }
@@ -552,6 +801,135 @@ export const deleteSubscriber = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createContact = /* GraphQL */ `
+  mutation CreateContact(
+    $input: CreateContactInput!
+    $condition: ModelContactConditionInput
+  ) {
+    createContact(input: $input, condition: $condition) {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateContact = /* GraphQL */ `
+  mutation UpdateContact(
+    $input: UpdateContactInput!
+    $condition: ModelContactConditionInput
+  ) {
+    updateContact(input: $input, condition: $condition) {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteContact = /* GraphQL */ `
+  mutation DeleteContact(
+    $input: DeleteContactInput!
+    $condition: ModelContactConditionInput
+  ) {
+    deleteContact(input: $input, condition: $condition) {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
     }
   }
@@ -563,9 +941,7 @@ export const createAttachment = /* GraphQL */ `
   ) {
     createAttachment(input: $input, condition: $condition) {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -582,6 +958,7 @@ export const createAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -592,10 +969,13 @@ export const createAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -609,9 +989,7 @@ export const updateAttachment = /* GraphQL */ `
   ) {
     updateAttachment(input: $input, condition: $condition) {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -628,6 +1006,7 @@ export const updateAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -638,10 +1017,13 @@ export const updateAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -655,9 +1037,7 @@ export const deleteAttachment = /* GraphQL */ `
   ) {
     deleteAttachment(input: $input, condition: $condition) {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -674,6 +1054,7 @@ export const deleteAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -684,10 +1065,13 @@ export const deleteAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -701,7 +1085,6 @@ export const createCertificate = /* GraphQL */ `
   ) {
     createCertificate(input: $input, condition: $condition) {
       id
-      member
       memberID
       attachment
       createdAt
@@ -719,6 +1102,7 @@ export const createCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -729,10 +1113,13 @@ export const createCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -746,7 +1133,6 @@ export const updateCertificate = /* GraphQL */ `
   ) {
     updateCertificate(input: $input, condition: $condition) {
       id
-      member
       memberID
       attachment
       createdAt
@@ -764,6 +1150,7 @@ export const updateCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -774,10 +1161,13 @@ export const updateCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -791,7 +1181,6 @@ export const deleteCertificate = /* GraphQL */ `
   ) {
     deleteCertificate(input: $input, condition: $condition) {
       id
-      member
       memberID
       attachment
       createdAt
@@ -809,6 +1198,7 @@ export const deleteCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -819,10 +1209,163 @@ export const deleteCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createPublication = /* GraphQL */ `
+  mutation CreatePublication(
+    $input: CreatePublicationInput!
+    $condition: ModelPublicationConditionInput
+  ) {
+    createPublication(input: $input, condition: $condition) {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updatePublication = /* GraphQL */ `
+  mutation UpdatePublication(
+    $input: UpdatePublicationInput!
+    $condition: ModelPublicationConditionInput
+  ) {
+    updatePublication(input: $input, condition: $condition) {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deletePublication = /* GraphQL */ `
+  mutation DeletePublication(
+    $input: DeletePublicationInput!
+    $condition: ModelPublicationConditionInput
+  ) {
+    deletePublication(input: $input, condition: $condition) {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -837,10 +1380,10 @@ export const createBlog = /* GraphQL */ `
     createBlog(input: $input, condition: $condition) {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -856,6 +1399,7 @@ export const createBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -866,10 +1410,13 @@ export const createBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -884,10 +1431,10 @@ export const updateBlog = /* GraphQL */ `
     updateBlog(input: $input, condition: $condition) {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -903,6 +1450,7 @@ export const updateBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -913,10 +1461,13 @@ export const updateBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -931,10 +1482,10 @@ export const deleteBlog = /* GraphQL */ `
     deleteBlog(input: $input, condition: $condition) {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -950,6 +1501,7 @@ export const deleteBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -960,10 +1512,346 @@ export const deleteBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createGallery = /* GraphQL */ `
+  mutation CreateGallery(
+    $input: CreateGalleryInput!
+    $condition: ModelGalleryConditionInput
+  ) {
+    createGallery(input: $input, condition: $condition) {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateGallery = /* GraphQL */ `
+  mutation UpdateGallery(
+    $input: UpdateGalleryInput!
+    $condition: ModelGalleryConditionInput
+  ) {
+    updateGallery(input: $input, condition: $condition) {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteGallery = /* GraphQL */ `
+  mutation DeleteGallery(
+    $input: DeleteGalleryInput!
+    $condition: ModelGalleryConditionInput
+  ) {
+    deleteGallery(input: $input, condition: $condition) {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createEvent = /* GraphQL */ `
+  mutation CreateEvent(
+    $input: CreateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    createEvent(input: $input, condition: $condition) {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateEvent = /* GraphQL */ `
+  mutation UpdateEvent(
+    $input: UpdateEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    updateEvent(input: $input, condition: $condition) {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent(
+    $input: DeleteEventInput!
+    $condition: ModelEventConditionInput
+  ) {
+    deleteEvent(input: $input, condition: $condition) {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createPublic = /* GraphQL */ `
+  mutation CreatePublic(
+    $input: CreatePublicInput!
+    $condition: ModelPublicConditionInput
+  ) {
+    createPublic(input: $input, condition: $condition) {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updatePublic = /* GraphQL */ `
+  mutation UpdatePublic(
+    $input: UpdatePublicInput!
+    $condition: ModelPublicConditionInput
+  ) {
+    updatePublic(input: $input, condition: $condition) {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deletePublic = /* GraphQL */ `
+  mutation DeletePublic(
+    $input: DeletePublicInput!
+    $condition: ModelPublicConditionInput
+  ) {
+    deletePublic(input: $input, condition: $condition) {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
           nextToken
         }
       }

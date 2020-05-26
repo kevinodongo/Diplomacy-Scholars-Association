@@ -3,8 +3,11 @@ type Diplomacy @model {
   name: String!
   user: [User] @connection(name: "DiplomacyUser")
   subscriber: [Subscriber] @connection(name: "DiplomacySubscriber")
+  public: [Public] @connection(name: "DiplomacyPublic")
+  gallery: [Gallery] @connection(name: "DiplomacyGallery")
+  event: [Event] @connection(name: "DiplomacyEvent")
+  contact: [Contact] @connection(name: "DiplomacyContact")
 }
-
 type User @model {
    id: ID!
    username: String!
@@ -18,23 +21,24 @@ type User @model {
    identification: String
    createdAt: String
    updatedAt: String
+   status: String
    diplomacy: Diplomacy @connection(name: "DiplomacyUser")
    education: [Education] @connection(name: "UserEducation")
    attachment: [Attachment] @connection(name: "UserAttachment")
-   certificate: [Certificate] @connection(name: "UserCertificate")
+   publication: [Publication] @connection(name: "UserPublication")
    blog: [Blog] @connection(name: "UserBlog")
+   certificate: [Certificate] @connection(name: "UserCertificate")
 }
-
 type Education @model {
   id: ID!
   institution: String!
+  memberID: String
   qualification: String
   duration: String
   createdAt: String
   updatedAt: String
   user: User @connection(name: "UserEducation")
 }
-
 type Subscriber @model {
   id: ID!
   name: String!
@@ -43,36 +47,78 @@ type Subscriber @model {
   updatedAt: String
   diplomacy: Diplomacy @connection(name: "DiplomacySubscriber")
 }
-
+type Contact @model {
+  id: ID!
+  username: String!
+  email: String
+  phone: String
+  subject: String
+  content: String
+  createdAt: String
+  updatedAt: String
+  diplomacy: Diplomacy @connection(name: "DiplomacyContact")
+}
 type Attachment @model {
   id: ID!
-  title: String!
-  memberID: String
-  subject: String
+  memberID: String!
   attachment: String
   createdAt: String
   updatedAt: String
   user: User @connection(name: "UserAttachment")
 }
-
 type Certificate @model {
   id: ID!
-  member: String!
-  memberID: String
+  memberID: String!
   attachment: String
   createdAt: String
   updatedAt: String
   user: User @connection(name: "UserCertificate")
 }
-
+type Publication @model {
+  id: ID!
+  member: String!
+  title: String
+  content: String
+  attachment: String
+  createdAt: String
+  updatedAt: String
+  user: User @connection(name: "UserPublication")
+}
 type Blog @model {
   id: ID!
   member: String!
-  memberID: String
   title: String
   subject: String
   content: String
+  attachment: String
   createdAt: String
   updatedAt: String
   user: User @connection(name: "UserBlog")
+},
+type Gallery @model {
+  id: ID!
+  attachment: String
+  createdAt: String
+  updatedAt: String
+  diplomacy: Diplomacy @connection(name: "DiplomacyGallery")
+}
+type Event @model {
+  id: ID!
+  title: String!
+  content: String
+  attachment: String
+  createdAt: String
+  updatedAt: String
+  diplomacy: Diplomacy @connection(name: "DiplomacyEvent")
+}
+type Public @model {
+  id: ID!
+  member: String!
+  title: String
+  subject: String
+  content: String
+  image: String
+  createdAt: String
+  updatedAt: String
+  diplomacy: Diplomacy @connection(name: "DiplomacyPublic")
 }

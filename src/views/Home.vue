@@ -229,28 +229,22 @@
 import Toolbar from "../components/parts/Toolbar";
 import { API, graphqlOperation } from "aws-amplify";
 import { createSubscriber } from "../graphql/mutations";
-import { listAttachments, listBlogs } from "../graphql/queries";
+import {
+  listAttachments,
+  listBlogs,
+  listPublications,
+  listEvents
+} from "../graphql/queries";
 import Swal from "sweetalert2";
 import { uuid } from "vue-uuid";
+var _ = require("lodash");
 export default {
   components: { Toolbar },
   data() {
     return {
       model: null,
-      news: [
-        {
-          title: "Lorem ipsum dolor sit amet consectetur",
-          text:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci dolores voluptates reprehenderit. Labore fugit ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam quis,",
-          src: "https://i.imgur.com/ii8HeF2.jpg"
-        },
-        {
-          title: "Lorem ipsum dolor sit amet consectetur",
-          text:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci dolores voluptates reprehenderit. Labore fugit ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam quis,",
-          src: "https://i.imgur.com/ii8HeF2.jpg"
-        }
-      ],
+      news: [], // blogs and publications
+      objects: {}, // events section latest
       items: [
         {
           src: "https://i.imgur.com/uLotJwu.jpg"
@@ -262,17 +256,20 @@ export default {
         {
           src: "https://i.imgur.com/VQZn3n0.jpg"
         }
-      ],
+      ], // carousel
       events: [
         { src: "https://i.imgur.com/7OrdCoj.jpg" },
         { src: "https://i.imgur.com/OEvy19U.jpg" },
         { src: "https://i.imgur.com/1xZBiR0.jpg" },
         { src: "https://i.imgur.com/Xb2ngez.jpg" },
         { src: "https://i.imgur.com/MgLkT47.jpg" }
-      ],
+      ], // events pictures
       email: "",
       name: ""
     };
+  },
+  mounted() {
+    this.getDetails();
   },
   methods: {
     async getDetails() {
@@ -286,7 +283,59 @@ export default {
       const blog = await API.graphql(graphqlOperation(listBlogs));
       const blogList = blog.data.listBlogs.items;
       if (blogList && blogList.length !== 0) {
-        this.blog = blogList;
+        blogList.forEach(e => {
+          const object = this.attachments.filter(a => {
+            return e.id === a.memberID;
+          });
+          if (object && object.length !== 0) {
+            const response = this.attachments.map(e => {
+              return Storage.get(e.attachment);
+            });
+            Promise.all(response).then(results => {
+              results.forEach(image => {
+                e.image = image;
+              });
+            });
+          }
+          const arr = this.news.concat(e);
+          this.news = _.uniqBy(arr, "id");
+        });
+      }
+      // get publications
+      const publications = await API.graphql(
+        graphqlOperation(listPublications)
+      );
+      const publicationsList = publications.data.listPublications.items;
+      if (publicationsList && publicationsList.length !== 0) {
+        publicationsList.forEach(e => {
+          const response = publicationsList.map(e => {
+            return Storage.get(e.attachment);
+          });
+          Promise.all(response).then(results => {
+            results.forEach(image => {
+              e.image = image;
+            });
+          });
+          const arr = this.news.concat(e);
+          this.news = _.uniqBy(arr, "id");
+        });
+      }
+      // get events
+      const event = await API.graphql(graphqlOperation(listEvents));
+      const eventsList = event.data.listEvents.items;
+      if (eventsList && eventsList.length !== 0) {
+        eventsList.forEach(e => {
+          const response = eventsList.map(e => {
+            return Storage.get(e.attachment);
+          });
+          Promise.all(response).then(results => {
+            results.forEach(image => {
+              e.image = image;
+            });
+          });
+          const arr = this.objects.concat(e);
+          this.objects = _.uniqBy(arr, "id");
+        });
       }
     },
     async subscribe() {

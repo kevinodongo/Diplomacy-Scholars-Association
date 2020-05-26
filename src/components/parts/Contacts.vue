@@ -53,6 +53,7 @@
             single-line
             outlined
             dense
+            v-model="item.username"
           ></v-text-field>
           <div class="caption font-weight-bold">
             Email Address <span class="red--text">*</span>
@@ -64,6 +65,7 @@
             single-line
             outlined
             dense
+            v-model="item.email"
           ></v-text-field>
           <div class="caption font-weight-bold">
             Phone <span class="red--text">*</span>
@@ -75,6 +77,7 @@
             single-line
             outlined
             dense
+            v-model="item.phone"
           ></v-text-field>
           <div class="caption font-weight-bold">
             Subject <span class="red--text">*</span>
@@ -86,6 +89,7 @@
             single-line
             outlined
             dense
+            v-model="item.subject"
           ></v-text-field>
           <div class="caption font-weight-bold">
             Message <span class="red--text">*</span>
@@ -96,8 +100,9 @@
             outlined
             name="input-7-4"
             placeholder="Please enter your enquiry"
+            v-model="item.content"
           ></v-textarea>
-          <v-btn color="primary">submit</v-btn>
+          <v-btn color="primary" @click="save">submit</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -108,12 +113,37 @@
 <script>
 import Footer from "./Footer";
 import Toolbar from "./Toolbar";
+import { createContact } from "../../graphql/mutations";
+import { API, graphqlOperation } from "aws-amplify";
+import Swal from "sweetalert2";
+import { uuid } from "vue-uuid";
 export default {
   components: { Footer, Toolbar },
   data() {
     return {
-      //
+      item: {}
     };
+  },
+  methods: {
+    async save() {
+      const data = {
+        id: uuid.v4(),
+        username: this.item.username,
+        email: this.item.email,
+        phone: this.item.phone,
+        subject: this.item.subject,
+        content: this.item.content,
+        createdAt: new Date()
+      };
+      await API.graphql(graphqlOperation(createContact, { input: data }))
+      this.item = {}
+      Swal.fire({
+        text: "Thank you for Contacting us",
+        icon: "success",
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
+        footer: "<div>Diplomacy Scholars Association of Kenya &copy; 2020</div>"
+      });
+    }
   }
 };
 </script>

@@ -20,6 +20,7 @@ export const onCreateDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -28,6 +29,52 @@ export const onCreateDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -55,6 +102,7 @@ export const onUpdateDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -63,6 +111,52 @@ export const onUpdateDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -90,6 +184,7 @@ export const onDeleteDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -98,6 +193,52 @@ export const onDeleteDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -121,6 +262,7 @@ export const onCreateUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -130,11 +272,24 @@ export const onCreateUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -145,20 +300,19 @@ export const onCreateUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -169,10 +323,20 @@ export const onCreateUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -196,6 +360,7 @@ export const onUpdateUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -205,11 +370,24 @@ export const onUpdateUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -220,20 +398,19 @@ export const onUpdateUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -244,10 +421,20 @@ export const onUpdateUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -271,6 +458,7 @@ export const onDeleteUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -280,11 +468,24 @@ export const onDeleteUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -295,20 +496,19 @@ export const onDeleteUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -319,10 +519,20 @@ export const onDeleteUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -336,6 +546,7 @@ export const onCreateEducation = /* GraphQL */ `
     onCreateEducation {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -353,6 +564,7 @@ export const onCreateEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -363,10 +575,13 @@ export const onCreateEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -378,6 +593,7 @@ export const onUpdateEducation = /* GraphQL */ `
     onUpdateEducation {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -395,6 +611,7 @@ export const onUpdateEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -405,10 +622,13 @@ export const onUpdateEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -420,6 +640,7 @@ export const onDeleteEducation = /* GraphQL */ `
     onDeleteEducation {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -437,6 +658,7 @@ export const onDeleteEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -447,10 +669,13 @@ export const onDeleteEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -474,6 +699,18 @@ export const onCreateSubscriber = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
     }
   }
@@ -493,6 +730,18 @@ export const onUpdateSubscriber = /* GraphQL */ `
           nextToken
         }
         subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
           nextToken
         }
       }
@@ -516,6 +765,126 @@ export const onDeleteSubscriber = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreateContact = /* GraphQL */ `
+  subscription OnCreateContact {
+    onCreateContact {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateContact = /* GraphQL */ `
+  subscription OnUpdateContact {
+    onUpdateContact {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteContact = /* GraphQL */ `
+  subscription OnDeleteContact {
+    onDeleteContact {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
     }
   }
@@ -524,9 +893,7 @@ export const onCreateAttachment = /* GraphQL */ `
   subscription OnCreateAttachment {
     onCreateAttachment {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -543,6 +910,7 @@ export const onCreateAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -553,10 +921,13 @@ export const onCreateAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -567,9 +938,7 @@ export const onUpdateAttachment = /* GraphQL */ `
   subscription OnUpdateAttachment {
     onUpdateAttachment {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -586,6 +955,7 @@ export const onUpdateAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -596,10 +966,13 @@ export const onUpdateAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -610,9 +983,7 @@ export const onDeleteAttachment = /* GraphQL */ `
   subscription OnDeleteAttachment {
     onDeleteAttachment {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -629,6 +1000,7 @@ export const onDeleteAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -639,10 +1011,13 @@ export const onDeleteAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -653,7 +1028,6 @@ export const onCreateCertificate = /* GraphQL */ `
   subscription OnCreateCertificate {
     onCreateCertificate {
       id
-      member
       memberID
       attachment
       createdAt
@@ -671,6 +1045,7 @@ export const onCreateCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -681,10 +1056,13 @@ export const onCreateCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -695,7 +1073,6 @@ export const onUpdateCertificate = /* GraphQL */ `
   subscription OnUpdateCertificate {
     onUpdateCertificate {
       id
-      member
       memberID
       attachment
       createdAt
@@ -713,6 +1090,7 @@ export const onUpdateCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -723,10 +1101,13 @@ export const onUpdateCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -737,7 +1118,6 @@ export const onDeleteCertificate = /* GraphQL */ `
   subscription OnDeleteCertificate {
     onDeleteCertificate {
       id
-      member
       memberID
       attachment
       createdAt
@@ -755,6 +1135,7 @@ export const onDeleteCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -765,10 +1146,154 @@ export const onDeleteCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreatePublication = /* GraphQL */ `
+  subscription OnCreatePublication {
+    onCreatePublication {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdatePublication = /* GraphQL */ `
+  subscription OnUpdatePublication {
+    onUpdatePublication {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeletePublication = /* GraphQL */ `
+  subscription OnDeletePublication {
+    onDeletePublication {
+      id
+      member
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -780,10 +1305,10 @@ export const onCreateBlog = /* GraphQL */ `
     onCreateBlog {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -799,6 +1324,7 @@ export const onCreateBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -809,10 +1335,13 @@ export const onCreateBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -824,10 +1353,10 @@ export const onUpdateBlog = /* GraphQL */ `
     onUpdateBlog {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -843,6 +1372,7 @@ export const onUpdateBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -853,10 +1383,13 @@ export const onUpdateBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -868,10 +1401,10 @@ export const onDeleteBlog = /* GraphQL */ `
     onDeleteBlog {
       id
       member
-      memberID
       title
       subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -887,6 +1420,7 @@ export const onDeleteBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -897,10 +1431,319 @@ export const onDeleteBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreateGallery = /* GraphQL */ `
+  subscription OnCreateGallery {
+    onCreateGallery {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateGallery = /* GraphQL */ `
+  subscription OnUpdateGallery {
+    onUpdateGallery {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteGallery = /* GraphQL */ `
+  subscription OnDeleteGallery {
+    onDeleteGallery {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreateEvent = /* GraphQL */ `
+  subscription OnCreateEvent {
+    onCreateEvent {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdateEvent = /* GraphQL */ `
+  subscription OnUpdateEvent {
+    onUpdateEvent {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeleteEvent = /* GraphQL */ `
+  subscription OnDeleteEvent {
+    onDeleteEvent {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onCreatePublic = /* GraphQL */ `
+  subscription OnCreatePublic {
+    onCreatePublic {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onUpdatePublic = /* GraphQL */ `
+  subscription OnUpdatePublic {
+    onUpdatePublic {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const onDeletePublic = /* GraphQL */ `
+  subscription OnDeletePublic {
+    onDeletePublic {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
           nextToken
         }
       }

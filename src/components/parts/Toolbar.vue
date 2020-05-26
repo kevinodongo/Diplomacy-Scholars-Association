@@ -211,12 +211,8 @@ export default {
       ],
       medias: [
         {
-          title: "Upcoming Events",
+          title: "Events",
           to: "upcoming-events"
-        },
-        {
-          title: "News",
-          to: "news"
         },
         {
           title: "Gallery",

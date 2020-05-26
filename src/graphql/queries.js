@@ -20,6 +20,7 @@ export const getDiplomacy = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
         nextToken
       }
@@ -28,6 +29,52 @@ export const getDiplomacy = /* GraphQL */ `
           id
           name
           email
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      public {
+        items {
+          id
+          member
+          title
+          subject
+          content
+          image
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      gallery {
+        items {
+          id
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      event {
+        items {
+          id
+          title
+          content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      contact {
+        items {
+          id
+          username
+          email
+          phone
+          subject
+          content
           createdAt
           updatedAt
         }
@@ -52,6 +99,18 @@ export const listDiplomacys = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       nextToken
     }
@@ -72,6 +131,7 @@ export const getUser = /* GraphQL */ `
       identification
       createdAt
       updatedAt
+      status
       diplomacy {
         id
         name
@@ -81,11 +141,24 @@ export const getUser = /* GraphQL */ `
         subscriber {
           nextToken
         }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
       }
       education {
         items {
           id
           institution
+          memberID
           qualification
           duration
           createdAt
@@ -96,20 +169,19 @@ export const getUser = /* GraphQL */ `
       attachment {
         items {
           id
-          title
           memberID
-          subject
           attachment
           createdAt
           updatedAt
         }
         nextToken
       }
-      certificate {
+      publication {
         items {
           id
           member
-          memberID
+          title
+          content
           attachment
           createdAt
           updatedAt
@@ -120,10 +192,20 @@ export const getUser = /* GraphQL */ `
         items {
           id
           member
-          memberID
           title
           subject
           content
+          attachment
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      certificate {
+        items {
+          id
+          memberID
+          attachment
           createdAt
           updatedAt
         }
@@ -152,6 +234,7 @@ export const listUsers = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -162,10 +245,13 @@ export const listUsers = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -178,6 +264,7 @@ export const getEducation = /* GraphQL */ `
     getEducation(id: $id) {
       id
       institution
+      memberID
       qualification
       duration
       createdAt
@@ -195,6 +282,7 @@ export const getEducation = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -205,10 +293,13 @@ export const getEducation = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -225,6 +316,7 @@ export const listEducations = /* GraphQL */ `
       items {
         id
         institution
+        memberID
         qualification
         duration
         createdAt
@@ -242,6 +334,7 @@ export const listEducations = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
       }
       nextToken
@@ -263,6 +356,18 @@ export const getSubscriber = /* GraphQL */ `
           nextToken
         }
         subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
           nextToken
         }
       }
@@ -291,13 +396,72 @@ export const listSubscribers = /* GraphQL */ `
     }
   }
 `;
+export const getContact = /* GraphQL */ `
+  query GetContact($id: ID!) {
+    getContact(id: $id) {
+      id
+      username
+      email
+      phone
+      subject
+      content
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listContacts = /* GraphQL */ `
+  query ListContacts(
+    $filter: ModelContactFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listContacts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        email
+        phone
+        subject
+        content
+        createdAt
+        updatedAt
+        diplomacy {
+          id
+          name
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getAttachment = /* GraphQL */ `
   query GetAttachment($id: ID!) {
     getAttachment(id: $id) {
       id
-      title
       memberID
-      subject
       attachment
       createdAt
       updatedAt
@@ -314,6 +478,7 @@ export const getAttachment = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -324,10 +489,13 @@ export const getAttachment = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -343,9 +511,7 @@ export const listAttachments = /* GraphQL */ `
     listAttachments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
         memberID
-        subject
         attachment
         createdAt
         updatedAt
@@ -362,6 +528,7 @@ export const listAttachments = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
       }
       nextToken
@@ -372,7 +539,6 @@ export const getCertificate = /* GraphQL */ `
   query GetCertificate($id: ID!) {
     getCertificate(id: $id) {
       id
-      member
       memberID
       attachment
       createdAt
@@ -390,6 +556,7 @@ export const getCertificate = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -400,10 +567,13 @@ export const getCertificate = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -419,7 +589,6 @@ export const listCertificates = /* GraphQL */ `
     listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        member
         memberID
         attachment
         createdAt
@@ -437,21 +606,21 @@ export const listCertificates = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
         }
       }
       nextToken
     }
   }
 `;
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getPublication = /* GraphQL */ `
+  query GetPublication($id: ID!) {
+    getPublication(id: $id) {
       id
       member
-      memberID
       title
-      subject
       content
+      attachment
       createdAt
       updatedAt
       user {
@@ -467,6 +636,7 @@ export const getBlog = /* GraphQL */ `
         identification
         createdAt
         updatedAt
+        status
         diplomacy {
           id
           name
@@ -477,10 +647,96 @@ export const getBlog = /* GraphQL */ `
         attachment {
           nextToken
         }
-        certificate {
+        publication {
           nextToken
         }
         blog {
+          nextToken
+        }
+        certificate {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listPublications = /* GraphQL */ `
+  query ListPublications(
+    $filter: ModelPublicationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPublications(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        member
+        title
+        content
+        attachment
+        createdAt
+        updatedAt
+        user {
+          id
+          username
+          email
+          membership
+          dob
+          phone
+          gender
+          address
+          nationality
+          identification
+          createdAt
+          updatedAt
+          status
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getBlog = /* GraphQL */ `
+  query GetBlog($id: ID!) {
+    getBlog(id: $id) {
+      id
+      member
+      title
+      subject
+      content
+      attachment
+      createdAt
+      updatedAt
+      user {
+        id
+        username
+        email
+        membership
+        dob
+        phone
+        gender
+        address
+        nationality
+        identification
+        createdAt
+        updatedAt
+        status
+        diplomacy {
+          id
+          name
+        }
+        education {
+          nextToken
+        }
+        attachment {
+          nextToken
+        }
+        publication {
+          nextToken
+        }
+        blog {
+          nextToken
+        }
+        certificate {
           nextToken
         }
       }
@@ -497,10 +753,10 @@ export const listBlogs = /* GraphQL */ `
       items {
         id
         member
-        memberID
         title
         subject
         content
+        attachment
         createdAt
         updatedAt
         user {
@@ -516,6 +772,178 @@ export const listBlogs = /* GraphQL */ `
           identification
           createdAt
           updatedAt
+          status
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getGallery = /* GraphQL */ `
+  query GetGallery($id: ID!) {
+    getGallery(id: $id) {
+      id
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listGallerys = /* GraphQL */ `
+  query ListGallerys(
+    $filter: ModelGalleryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGallerys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        attachment
+        createdAt
+        updatedAt
+        diplomacy {
+          id
+          name
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      title
+      content
+      attachment
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        content
+        attachment
+        createdAt
+        updatedAt
+        diplomacy {
+          id
+          name
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getPublic = /* GraphQL */ `
+  query GetPublic($id: ID!) {
+    getPublic(id: $id) {
+      id
+      member
+      title
+      subject
+      content
+      image
+      createdAt
+      updatedAt
+      diplomacy {
+        id
+        name
+        user {
+          nextToken
+        }
+        subscriber {
+          nextToken
+        }
+        public {
+          nextToken
+        }
+        gallery {
+          nextToken
+        }
+        event {
+          nextToken
+        }
+        contact {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const listPublics = /* GraphQL */ `
+  query ListPublics(
+    $filter: ModelPublicFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPublics(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        member
+        title
+        subject
+        content
+        image
+        createdAt
+        updatedAt
+        diplomacy {
+          id
+          name
         }
       }
       nextToken

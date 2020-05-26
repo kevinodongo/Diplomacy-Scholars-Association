@@ -31,6 +31,9 @@
 <script>
 import Footer from "../parts/Footer";
 import Toolbar from "../parts/Toolbar";
+import { API, graphqlOperation } from "aws-amplify";
+import { listUsers } from "../../graphql/queries";
+var _ = require("lodash");
 export default {
   components: { Footer, Toolbar },
   data() {
@@ -41,66 +44,33 @@ export default {
           text: "Names",
           align: "start",
           filterable: false,
-          value: "name"
+          value: "username"
         },
         { text: "Membership", value: "membership" },
         { text: "Gender", value: "gender" },
         { text: "Address", value: "address" },
-        { text: "Nationality", value: "nationality" }
+        { text: "Nationality", value: "nationality" },
+        { text: "Status", value: "status" }
       ],
-      dispak: [
-        {
-          name: "Peter Onyango",
-          membership: "Founding Member",
-          gender: "M",
-          education: "Phd",
-          address: "1421 Nairobi",
-          email: "info@email.com",
-          phone: "0725999157",
-          nationality: "Kenyan"
-        },
-        {
-          name: "John Waweru",
-          membership: "Founding Member",
-          gender: "M",
-          education: "Phd",
-          address: "1421 Nairobi",
-          email: "info@email.com",
-          phone: "0725999157",
-          nationality: "Kenyan"
-        },
-        {
-          name: "Stephen Wanderu",
-          membership: "Founding Member",
-          gender: "M",
-          education: "Phd",
-          address: "1421 Nairobi",
-          email: "info@email.com",
-          phone: "0725999157",
-          nationality: "Kenyan"
-        },
-        {
-          name: "Winnie Sitati",
-          membership: "Founding Member",
-          gender: "M",
-          education: "Phd",
-          address: "1421 Nairobi",
-          email: "info@email.com",
-          phone: "0725999157",
-          nationality: "Kenyan"
-        },
-        {
-          name: "Paul kipkorir",
-          membership: "Founding Member",
-          gender: "M",
-          education: "Phd",
-          address: "1421 Nairobi",
-          email: "info@email.com",
-          phone: "0725999157",
-          nationality: "Kenyan"
-        }
-      ]
+      dispak: []
     };
+  },
+  mounted() {
+    this.getDetails();
+  },
+  methods: {
+    async getDetails() {
+      const member = await API.graphql(graphqlOperation(listUsers));
+      const memberList = member.data.listUsers.items;
+      if (memberList && memberList.length !== 0) {
+        memberList.forEach(e => {
+          if (e.status === "Active") {
+            const arr = this.dispak.concat(e);
+            this.dispak = _.uniqBy(arr, "id");
+          }
+        });
+      }
+    }
   }
 };
 </script>
