@@ -1,19 +1,74 @@
 <template>
   <div class="events">
     <Toolbar />
+    <v-sheet height="100" color="#FFF8E1" tile>
+      <v-container class="fill-height">
+        <v-row align="center">
+          <div class="display-1 indigo--text font-weight-light">
+            Publications & Blogs
+          </div>
+        </v-row>
+      </v-container>
+    </v-sheet>
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar flat>
+          <v-spacer></v-spacer>
+          <v-btn @click="dialog = false" icon><v-icon>mdi-close</v-icon></v-btn>
+        </v-toolbar>
+        <v-divider></v-divider>
+        <v-card-text> </v-card-text>
+      </v-card>
+    </v-dialog>
     <v-container grid-list-xs>
       <v-sheet min-height="650">
-        <v-sheet height="100" tile class="mt-10">
-          <v-div class="display-1 indigo--text font-weight-light">
-            Publications
-          </v-div>
-        </v-sheet>
-        <v-sheet height="350" width="350">
-          <v-img src="https://i.imgur.com/ii8HeF2.jpg" width="100%"></v-img>
-          <v-row justify="center" class="mt-3">
-            <v-btn color="success">read more</v-btn>
-          </v-row>
-        </v-sheet>
+        <v-row>
+          <v-sheet
+            min-height="300"
+            width="280"
+            elevation="2"
+            class="ma-2"
+            v-for="publication in publications"
+            :key="publication"
+          >
+            <div v-if="publication.image">
+              <v-sheet height="200">
+                <img
+                  :src="publication.image"
+                  alt=""
+                  width="100%"
+                  height="200"
+                />
+              </v-sheet>
+            </div>
+            <div v-else>
+              <v-row justify="center">
+                <img
+                  src="https://i.imgur.com/IK8G3cb.jpg"
+                  alt=""
+                  height="200"
+                />
+              </v-row>
+            </div>
+            <v-card-title primary-title>
+              {{ publication.title }}
+            </v-card-title>
+            <v-card-text>
+              <div class="content-text">{{ publication.content }}</div>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="orange" text @click="dialog = true"
+                >read more</v-btn
+              >
+            </v-card-actions>
+          </v-sheet>
+        </v-row>
       </v-sheet>
     </v-container>
     <Footer />
@@ -24,13 +79,13 @@
 import Footer from "../parts/Footer";
 import Toolbar from "../parts/Toolbar";
 import { API, graphqlOperation } from "aws-amplify";
-import { listPublications } from "../../graphql/queries";
-var _ = require("lodash");
+import { listPublics } from "../../graphql/queries";
 export default {
   components: { Footer, Toolbar },
   data() {
     return {
-      publications: []
+      publications: [],
+      dialog: false
     };
   },
   mounted() {
@@ -38,25 +93,24 @@ export default {
   },
   methods: {
     async getDetails() {
-      const publications = await API.graphql(
-        graphqlOperation(listPublications)
-      );
-      const publicationsList = publications.data.listPublications.items;
-      if (publicationsList && publicationsList.length !== 0) {
-        publicationsList.forEach(e => {
-          const response = publicationsList.map(e => {
-            return Storage.get(e.attachment);
-          });
-          Promise.all(response).then(results => {
-            results.forEach(image => {
-              e.image = image;
-            });
-          });
-          const arr = this.publications.concat(e);
-          this.publications = _.uniqBy(arr, "id");
-        });
+      // public
+      const p = await API.graphql(graphqlOperation(listPublics));
+      const publicList = p.data.listPublics.items;
+      if (publicList && publicList.length !== 0) {
+        this.publications = publicList;
+        console.log(this.publications);
       }
     }
   }
 };
 </script>
+
+<style lang="css">
+.content-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  font-size: 18;
+}
+</style>

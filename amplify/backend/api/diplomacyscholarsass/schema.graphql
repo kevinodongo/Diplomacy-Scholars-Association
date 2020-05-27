@@ -118,6 +118,7 @@ type Public @model {
   subject: String
   content: String
   image: String
+  publication: String
   createdAt: String
   updatedAt: String
   diplomacy: Diplomacy @connection(name: "DiplomacyPublic")

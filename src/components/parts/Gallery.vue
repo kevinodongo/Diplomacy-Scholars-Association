@@ -1,22 +1,26 @@
 <template>
   <div class="gallery">
     <Toolbar />
+    <v-sheet height="100" color="#FFF8E1" tile>
+      <v-container class="fill-height">
+        <v-row align="center">
+          <div class="display-1 indigo--text font-weight-light">
+            Gallery
+          </div>
+        </v-row>
+      </v-container>
+    </v-sheet>
     <v-container grid-list-xs>
-      <v-sheet height="100" tile class="mt-10">
-        <div class="display-1 indigo--text font-weight-light">
-          Gallery
-        </div>
-      </v-sheet>
       <v-sheet min-height="650">
         <v-row>
           <v-sheet
             class="ma-1"
             height="400"
-            width="300"
+            width="280"
             v-for="item in items"
             :key="item.id"
           >
-            <v-img :src="item.src" width="100%"></v-img>
+            <v-img :src="item.attachment" width="100%" height="400"></v-img>
           </v-sheet>
         </v-row>
       </v-sheet>
@@ -28,19 +32,14 @@
 <script>
 import Footer from "../parts/Footer";
 import Toolbar from "../parts/Toolbar";
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { listGallerys } from "../../graphql/queries";
 var _ = require("lodash");
 export default {
   components: { Footer, Toolbar },
   data() {
     return {
-      items: [
-        { src: "https://i.imgur.com/VQZn3n0.jpg" },
-        { src: "https://i.imgur.com/uLotJwu.jpg" },
-        { src: "https://i.imgur.com/VQZn3n0.jpg" }
-      ],
-      events: []
+      items: [],
     };
   },
   mounted() {
@@ -48,20 +47,15 @@ export default {
   },
   methods: {
     async getDetails() {
-      const event = await API.graphql(graphqlOperation(listGallerys));
-      const eventsList = event.data.listGallery.items;
-      if (eventsList && eventsList.length !== 0) {
-        eventsList.forEach(e => {
-          const response = eventsList.map(e => {
-            return Storage.get(e.attachment);
+      const image = await API.graphql(graphqlOperation(listGallerys));
+      const imageList = image.data.listGallerys.items;
+      if (imageList && imageList.length !== 0) {
+        imageList.forEach(e => {
+          Storage.get(e.attachment).then(image => {
+            e.attachment = image;
           });
-          Promise.all(response).then(results => {
-            results.forEach(image => {
-              e.image = image;
-            });
-          });
-          const arr = this.events.concat(e);
-          this.events = _.uniqBy(arr, "id");
+          const arr = this.items.concat(e);
+          this.items = _.uniqBy(arr, "id");
         });
       }
     }

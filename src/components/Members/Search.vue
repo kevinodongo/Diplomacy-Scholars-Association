@@ -17,11 +17,11 @@
             hide-details
           ></v-text-field>
         </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="dispak"
-          :search="search"
-        ></v-data-table>
+        <v-data-table :headers="headers" :items="dispak" :search="search">
+          <template v-slot:item.status="{ item }">
+            <v-chip color="orange" dark>{{ item.status }}</v-chip>
+          </template>
+        </v-data-table>
       </v-card>
     </v-container>
     <Footer />
@@ -43,7 +43,7 @@ export default {
         {
           text: "Names",
           align: "start",
-          filterable: false,
+          sortable: false,
           value: "username"
         },
         { text: "Membership", value: "membership" },

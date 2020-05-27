@@ -42,6 +42,7 @@ export const onCreateDiplomacy = /* GraphQL */ `
           subject
           content
           image
+          publication
           createdAt
           updatedAt
         }
@@ -124,6 +125,7 @@ export const onUpdateDiplomacy = /* GraphQL */ `
           subject
           content
           image
+          publication
           createdAt
           updatedAt
         }
@@ -206,6 +208,7 @@ export const onDeleteDiplomacy = /* GraphQL */ `
           subject
           content
           image
+          publication
           createdAt
           updatedAt
         }
@@ -1651,6 +1654,7 @@ export const onCreatePublic = /* GraphQL */ `
       subject
       content
       image
+      publication
       createdAt
       updatedAt
       diplomacy {
@@ -1687,6 +1691,7 @@ export const onUpdatePublic = /* GraphQL */ `
       subject
       content
       image
+      publication
       createdAt
       updatedAt
       diplomacy {
@@ -1723,6 +1728,7 @@ export const onDeletePublic = /* GraphQL */ `
       subject
       content
       image
+      publication
       createdAt
       updatedAt
       diplomacy {

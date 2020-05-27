@@ -244,7 +244,7 @@ export default {
             id: e.id,
             createdAt: e.createdAt,
             text: e.username,
-            value: e.id
+            value: e.username
           });
           this.items = _.orderBy(_.uniqBy(array, "id"), "createdAt", "desc");
         });

@@ -192,6 +192,7 @@ export default {
         id: blogID,
         member: this.selectedUser,
         title: this.title,
+        subject: this.subject,
         content: this.content,
         attachment: this.file.name ? this.file.name : null,
         createdAt: new Date()

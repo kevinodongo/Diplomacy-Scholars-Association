@@ -1,5 +1,14 @@
 <template>
   <div class="home">
+    <v-btn
+      id="myBtn"
+      onclick="document.body.scrollTop=0;document.documentElement.scrollTop=0;event.preventDefault()"
+      fab
+      dark
+      color="red darken-2"
+    >
+      <v-icon dark>mdi-chevron-up</v-icon>
+    </v-btn>
     <div class="icon-bar">
       <v-btn tile color="#3B5998" dark><v-icon>mdi-facebook</v-icon></v-btn>
       <div class="mt-1">
@@ -8,7 +17,7 @@
     </div>
     <Toolbar />
     <v-sheet tile>
-      <v-carousel :show-arrows="false" hide-delimiters cycle height="600">
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="660">
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
@@ -16,12 +25,9 @@
         ></v-carousel-item>
       </v-carousel>
     </v-sheet>
-    <v-sheet min-height="500" tile>
+    <v-sheet min-height="750" tile>
       <v-container grid-list-xs>
-        <div
-          class="text-center headline indigo--text font-weight-regular mt-10"
-          style="text-transform: uppercase"
-        >
+        <div class="text-center title-welcome indigo--text mt-10">
           Welcome to Diplomacy Scholars Association of Kenya
         </div>
         <div class="welcome-text">
@@ -36,51 +42,115 @@
         </div>
         <v-row>
           <v-col cols="12" md="8">
-            <v-card-title
-              primary-title
-              style="text-transform: uppercase"
-              class="font-weight-regular indigo--text"
-            >
+            <div class="indigo--text title-welcome">
               Latest news & Publications
-            </v-card-title>
-            <v-sheet v-for="(n, index) in news" :key="index">
-              <v-row no-gutters>
-                <v-col cols="12" md="2">
-                  <v-sheet height="100" width="100" elevation="1" color="grey">
-                    <img :src="n.src" width="100%" height="100%" />
-                  </v-sheet>
-                </v-col>
-                <v-col cols="12" md="10">
-                  <div
-                    style="text-transform: uppercase"
-                    class="title font-weight-regular indigo--text"
-                    v-text="n.title"
-                  ></div>
-                  <div class="mt-1" v-text="n.text"></div>
-                  <v-btn class="mt-2 mb-2" color="success" small tile
-                    ><span class="font-weight-light">read more</span></v-btn
-                  >
-                </v-col>
-              </v-row>
-            </v-sheet>
+            </div>
+            <v-card min-height="400" elevation="1" tile>
+              <div v-if="loading">
+                <v-sheet height="400">
+                  <v-container class="fill-height">
+                    <v-row justify="center" align="center">
+                      <v-sheet height="100" width="100">
+                        <img
+                          src="https://i.imgur.com/IK8G3cb.jpg"
+                          width="100%"
+                          height="100"
+                        />
+                      </v-sheet>
+                    </v-row>
+                  </v-container>
+                </v-sheet>
+              </div>
+              <div v-else>
+                <v-card-text v-for="(n, index) in news" :key="index">
+                  <v-row no-gutters>
+                    <v-col cols="12" md="2">
+                      <v-sheet
+                        height="100"
+                        width="100"
+                        elevation="1"
+                        color="grey"
+                        v-if="n.image"
+                      >
+                        <img :src="n.image" width="100%" height="100" />
+                      </v-sheet>
+                      <v-sheet
+                        height="100"
+                        width="100"
+                        elevation="1"
+                        color="grey"
+                        v-if="n.publication"
+                      >
+                        <img
+                          src="https://i.imgur.com/IK8G3cb.jpg"
+                          width="100%"
+                          height="100"
+                        />
+                      </v-sheet>
+                    </v-col>
+                    <v-col cols="12" md="10">
+                      <div
+                        style="text-transform: uppercase"
+                        class="title font-weight-regular indigo--text"
+                        v-text="n.title"
+                      ></div>
+                      <div class="mt-1 content" v-text="n.content"></div>
+                      <div class="text-end">
+                        <v-btn class="mt-2 mb-2" color="orange" text tile
+                          >read more</v-btn
+                        >
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </div>
+            </v-card>
           </v-col>
           <v-col cols="12" md="4">
-            <v-card-title
-              primary-title
-              style="text-transform: uppercase"
-              class="font-weight-light indigo--text"
-            >
+            <div class="indigo--text title-welcome">
               News & Events
-            </v-card-title>
-            <v-sheet height="300" width="300">
-              <v-img src="https://i.imgur.com/4sxbhDN.jpg" width="300">
-                <v-container class="fill-height">
-                  <v-row justify="center" align="center">
-                    <v-btn color="success" dark>Read more</v-btn>
-                  </v-row>
-                </v-container>
-              </v-img>
-            </v-sheet>
+            </div>
+            <v-card
+              min-height="400"
+              width="350"
+              v-if="object"
+              elevation="1"
+              tile
+            >
+              <div v-if="loading">
+                <v-sheet height="400">
+                  <v-container class="fill-height">
+                    <v-row justify="center" align="center">
+                      <v-sheet height="100" width="100">
+                        <img
+                          src="https://i.imgur.com/IK8G3cb.jpg"
+                          width="100%"
+                          height="100"
+                        />
+                      </v-sheet>
+                    </v-row>
+                  </v-container>
+                </v-sheet>
+              </div>
+              <div v-else>
+                <img
+                  :src="object.attachment"
+                  alt="eventimage"
+                  height="200"
+                  width="100%"
+                />
+                <v-card-title primary-title>
+                  {{ object.title }}
+                </v-card-title>
+                <v-card-text>
+                  <div class="content">{{ object.content }}</div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="orange" text>read more</v-btn>
+                </v-card-actions>
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -88,33 +158,52 @@
     <v-sheet>
       <v-row no-gutters>
         <v-col cols="12" md="3">
-          <v-sheet color="indigo" height="80" tile>
+          <v-sheet color="indigo" height="60" tile dark>
             <v-container class="fill-height" grid-list-xs>
               <v-row justify="center" align="center">
-                <div class="event">Upcoming Event</div>
+                <div>UPCOMING EVENTS</div>
               </v-row>
             </v-container>
           </v-sheet>
         </v-col>
         <v-col cols="12" md="9">
-          <v-sheet color="grey" height="80" tile></v-sheet>
+          <v-sheet color="#FFF8E1" height="60" tile>
+            <v-container class="fill-height">
+              <v-row align="center" justify="center">
+                <div
+                  class="indigo--text"
+                  style="font-size: 18px;"
+                  transition="dialog-transition"
+                >
+                  {{ object.title }} | {{ object.updatedAt }} |
+                </div>
+              </v-row>
+            </v-container>
+          </v-sheet>
         </v-col>
       </v-row>
     </v-sheet>
-    <v-sheet min-height="500" class="mx-auto" tile>
+    <v-sheet min-height="720" class="mx-auto" tile color="#E0E0E0">
       <v-container fluid>
+        <v-card-text class="text-center">
+          <div class="font-weight-regular title mt-7 mb-3 indigo--text">
+            PAST EVENTS
+          </div>
+        </v-card-text>
         <v-slide-group multiple show-arrows>
           <v-slide-item
             v-for="n in events"
-            :key="n"
+            :key="n.id"
             v-slot:default="{ active, toggle }"
           >
             <v-sheet
-              class="mx-2"
+              class="mx-1"
               height="500"
               width="550"
               :input-value="active"
               @click="toggle"
+              elevation="4"
+              tile
             >
               <img :src="n.src" width="550" height="500" />
             </v-sheet>
@@ -148,7 +237,12 @@
             <v-btn color="grey" dark @click="subscribe">subscribe</v-btn>
           </v-col>
           <v-col cols="12" md="4">
-            <v-sheet elevation="2" width="100%" color="#37474F" class="pa-3">
+            <v-sheet
+              elevation="2"
+              width="100%"
+              color="#37474F"
+              class="pa-3 mt-2"
+            >
               <v-card-text class="text-center">
                 <div class="headline">Connect with us</div>
                 <div class="ma-2">
@@ -177,15 +271,15 @@
         <v-row class="mt-10">
           <v-col cols="12" md="6">
             <div class="about">Get connected with us</div>
-            <div class="mb-1">
+            <div class="mb-1 about-text">
               <v-icon class="mr-1">mdi-map-marker</v-icon>
               ADDRESS: Diplomacy Scholars Association of Kenya
             </div>
-            <div class="mb-1">
+            <div class="mb-1 about-text">
               <v-icon class="mr-1">mdi-phone</v-icon>
               PHONE: (+254) 020 2728 444, 0726 243 005, 0780 496 588
             </div>
-            <div class="mb-1">
+            <div class="mb-1 about-text">
               <v-icon class="mr-1">mdi-email</v-icon>
               EMAIL: nfo@dipsak.org
             </div>
@@ -227,14 +321,9 @@
 
 <script>
 import Toolbar from "../components/parts/Toolbar";
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { createSubscriber } from "../graphql/mutations";
-import {
-  listAttachments,
-  listBlogs,
-  listPublications,
-  listEvents
-} from "../graphql/queries";
+import { listEvents, listPublics } from "../graphql/queries";
 import Swal from "sweetalert2";
 import { uuid } from "vue-uuid";
 var _ = require("lodash");
@@ -244,7 +333,9 @@ export default {
     return {
       model: null,
       news: [], // blogs and publications
-      objects: {}, // events section latest
+      blogs: [],
+      object: {}, // events section latest
+      elements: [],
       items: [
         {
           src: "https://i.imgur.com/uLotJwu.jpg"
@@ -265,78 +356,59 @@ export default {
         { src: "https://i.imgur.com/MgLkT47.jpg" }
       ], // events pictures
       email: "",
-      name: ""
+      name: "",
+      limit: 2,
+      loading: false
     };
   },
   mounted() {
     this.getDetails();
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
   },
   methods: {
     async getDetails() {
-      // get attachments
-      const attach = await API.graphql(graphqlOperation(listAttachments));
-      const attachList = attach.data.listAttachments.items;
-      if (attachList && attachList.length !== 0) {
-        this.attachments = attachList;
+      // public
+      this.loading = true;
+      const p = await API.graphql(graphqlOperation(listPublics));
+      const publicList = p.data.listPublics.items;
+      if (publicList && publicList.length !== 0) {
+        this.blogs = _.orderBy(publicList, "createdAt", "desc");
       }
-      // get blogs
-      const blog = await API.graphql(graphqlOperation(listBlogs));
-      const blogList = blog.data.listBlogs.items;
-      if (blogList && blogList.length !== 0) {
-        blogList.forEach(e => {
-          const object = this.attachments.filter(a => {
-            return e.id === a.memberID;
-          });
-          if (object && object.length !== 0) {
-            const response = this.attachments.map(e => {
-              return Storage.get(e.attachment);
-            });
-            Promise.all(response).then(results => {
-              results.forEach(image => {
-                e.image = image;
-              });
-            });
-          }
-          const arr = this.news.concat(e);
-          this.news = _.uniqBy(arr, "id");
-        });
-      }
-      // get publications
-      const publications = await API.graphql(
-        graphqlOperation(listPublications)
+      // once we have the articles and blogs
+      const append = this.blogs.slice(
+        this.news.length,
+        this.news.length + this.limit
       );
-      const publicationsList = publications.data.listPublications.items;
-      if (publicationsList && publicationsList.length !== 0) {
-        publicationsList.forEach(e => {
-          const response = publicationsList.map(e => {
-            return Storage.get(e.attachment);
-          });
-          Promise.all(response).then(results => {
-            results.forEach(image => {
-              e.image = image;
-            });
-          });
-          const arr = this.news.concat(e);
-          this.news = _.uniqBy(arr, "id");
-        });
-      }
+      this.news = this.news.concat(append);
       // get events
       const event = await API.graphql(graphqlOperation(listEvents));
       const eventsList = event.data.listEvents.items;
       if (eventsList && eventsList.length !== 0) {
         eventsList.forEach(e => {
-          const response = eventsList.map(e => {
-            return Storage.get(e.attachment);
+          Storage.get(e.attachment).then(image => {
+            e.attachment = image;
           });
-          Promise.all(response).then(results => {
-            results.forEach(image => {
-              e.image = image;
-            });
-          });
-          const arr = this.objects.concat(e);
-          this.objects = _.uniqBy(arr, "id");
+          const arr = this.elements.concat(e);
+          this.elements = _.orderBy(_.uniqBy(arr, "id"), "createdAt", "desc");
         });
       }
+      this.object = _.first(this.elements);
+      this.loading = false;
     },
     async subscribe() {
       const data = {
@@ -346,6 +418,7 @@ export default {
         createdAt: new Date()
       };
       await API.graphql(graphqlOperation(createSubscriber, { input: data }));
+      (this.name = ""), (this.email = "");
       Swal.fire({
         text: "Thank you for Subscribing",
         icon: "success",
@@ -358,15 +431,22 @@ export default {
 </script>
 
 <style lang="css">
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+}
 .welcome {
   font-size: 30px;
   font-weight: bold;
   margin-top: 20px;
 }
 .welcome-text {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 25px;
-  font-weight: 300;
+  font-family: Georgia, "Times New Roman", Times, serif;
   line-height: 1.6rem;
   text-align: justify;
 }
@@ -379,17 +459,33 @@ export default {
 }
 .about {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .about-text {
   font-size: 16px;
-  font-weight: 200;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .icon-bar {
   position: fixed;
   top: 10%;
   right: 2px;
   z-index: 99;
+}
+.content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: 18;
+}
+.title-welcome {
+  text-transform: uppercase;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  letter-spacing: 0.2rem;
+  font-size: 21px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 </style>

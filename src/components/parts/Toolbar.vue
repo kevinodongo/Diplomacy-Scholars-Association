@@ -197,6 +197,10 @@ export default {
         {
           title: "Publications",
           to: "publication"
+        },
+        {
+          title: "Blogs",
+          to: "publication"
         }
       ],
       members: [
@@ -244,10 +248,8 @@ export default {
           text: "Publications",
           model: false,
           children: [
-            { text: "Africa Research Notes", to: "publication" },
-            { text: "API Policy Briefs" },
-            { text: "Africa Policy Review" },
-            { text: "Books and Monographs" }
+            { text: "Publications", to: "publication" },
+            { text: "Blogs", to: "publication" }
           ]
         },
         {
@@ -286,15 +288,15 @@ export default {
 <style lang="css">
 .diplomacy {
   font-size: 40px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .diplomacy-small {
-  font-size: 14px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .diplomacy-medium {
   font-size: 23px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .association {
   font-size: 30px;

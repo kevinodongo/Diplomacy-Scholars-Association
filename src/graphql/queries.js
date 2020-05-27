@@ -42,6 +42,7 @@ export const getDiplomacy = /* GraphQL */ `
           subject
           content
           image
+          publication
           createdAt
           updatedAt
         }
@@ -898,6 +899,7 @@ export const getPublic = /* GraphQL */ `
       subject
       content
       image
+      publication
       createdAt
       updatedAt
       diplomacy {
@@ -939,6 +941,7 @@ export const listPublics = /* GraphQL */ `
         subject
         content
         image
+        publication
         createdAt
         updatedAt
         diplomacy {

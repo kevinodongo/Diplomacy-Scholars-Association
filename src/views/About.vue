@@ -1,9 +1,17 @@
 <template>
   <div class="about-page">
     <Toolbar />
+    <v-sheet height="100" color="#FFF8E1" tile>
+      <v-container class="fill-height">
+        <v-row align="center">
+          <div class="display-1 indigo--text font-weight-light">
+            About
+          </div>
+        </v-row>
+      </v-container>
+    </v-sheet>
     <v-sheet min-height="635">
       <v-container grid-list-xs>
-        <div class="mt-5 about">About</div>
         <div v-for="(item, index) in items" :key="index" class="mb-3">
           <div
             class="red--text body-1 font-weight-bold"

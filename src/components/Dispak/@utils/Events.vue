@@ -171,6 +171,7 @@
 import { Auth, API, graphqlOperation, Storage } from "aws-amplify";
 import { uuid } from "vue-uuid";
 import { createGallery, createEvent } from "../../../graphql/mutations";
+import moment from "moment"
 export default {
   async beforeCreate() {
     this.user = await Auth.currentAuthenticatedUser();
@@ -249,12 +250,14 @@ export default {
       // send to s3
       await Storage.put(key, this.events, options);
       // send to db
+      const date = moment().format("MMMM Do YYYY, h:mm:ss a")
       const attach = {
         id: uuid.v4(),
         title: this.title,
         content: this.content,
         attachment: this.events.name, // attachment
-        createdAt: new Date()
+        createdAt: new Date(),
+        updatedAt: date
       };
       await API.graphql(graphqlOperation(createEvent, { input: attach }));
       this.title = "";
