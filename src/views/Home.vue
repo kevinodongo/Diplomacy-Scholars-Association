@@ -96,7 +96,12 @@
                       ></div>
                       <div class="mt-1 content" v-text="n.content"></div>
                       <div class="text-end">
-                        <v-btn class="mt-2 mb-2" color="orange" text tile
+                        <v-btn
+                          to="/publication"
+                          class="mt-2 mb-2"
+                          color="orange"
+                          text
+                          tile
                           >read more</v-btn
                         >
                       </div>
@@ -117,7 +122,7 @@
               elevation="1"
               tile
             >
-              <div v-if="loading">
+              <div v-if="getting">
                 <v-sheet height="400">
                   <v-container class="fill-height">
                     <v-row justify="center" align="center">
@@ -147,7 +152,9 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="orange" text>read more</v-btn>
+                  <v-btn to="/upcoming-events" color="orange" text
+                    >read more</v-btn
+                  >
                 </v-card-actions>
               </div>
             </v-card>
@@ -358,7 +365,8 @@ export default {
       email: "",
       name: "",
       limit: 2,
-      loading: false
+      loading: false,
+      getting: false
     };
   },
   mounted() {
@@ -384,6 +392,7 @@ export default {
     async getDetails() {
       // public
       this.loading = true;
+      this.getting = true
       const p = await API.graphql(graphqlOperation(listPublics));
       const publicList = p.data.listPublics.items;
       if (publicList && publicList.length !== 0) {
@@ -395,6 +404,11 @@ export default {
         this.news.length + this.limit
       );
       this.news = this.news.concat(append);
+      if (this.news.length !== 0) {
+        this.loading = false;
+      } else {
+        this.loading = true;
+      }
       // get events
       const event = await API.graphql(graphqlOperation(listEvents));
       const eventsList = event.data.listEvents.items;
@@ -407,8 +421,12 @@ export default {
           this.elements = _.orderBy(_.uniqBy(arr, "id"), "createdAt", "desc");
         });
       }
-      this.object = _.first(this.elements);
-      this.loading = false;
+      if (this.elements.length !== 0) {
+        this.object = _.first(this.elements);
+        this.getting = false;
+      } else {
+        this.getting = true;
+      }
     },
     async subscribe() {
       const data = {

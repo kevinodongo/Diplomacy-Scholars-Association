@@ -4,7 +4,7 @@
     <v-sheet height="100" color="#FFF8E1" tile>
       <v-container class="fill-height">
         <v-row align="center">
-          <div class="display-1 indigo--text font-weight-light">
+          <div style="font-size: 30px;" class="indigo--text font-weight-light">
             Gallery
           </div>
         </v-row>
@@ -12,17 +12,34 @@
     </v-sheet>
     <v-container grid-list-xs>
       <v-sheet min-height="650">
-        <v-row>
-          <v-sheet
-            class="ma-1"
-            height="400"
-            width="280"
-            v-for="item in items"
-            :key="item.id"
-          >
-            <v-img :src="item.attachment" width="100%" height="400"></v-img>
+        <div v-if="loading">
+          <v-sheet height="600">
+            <v-container class="fill-height">
+              <v-row justify="center" align="center">
+                <v-sheet height="200" width="200">
+                  <img
+                    src="https://i.imgur.com/IK8G3cb.jpg"
+                    width="100%"
+                    height="200"
+                  />
+                </v-sheet>
+              </v-row>
+            </v-container>
           </v-sheet>
-        </v-row>
+        </div>
+        <div v-else>
+          <v-row>
+            <v-sheet
+              class="ma-1"
+              height="400"
+              width="280"
+              v-for="item in items"
+              :key="item.id"
+            >
+              <v-img :src="item.attachment" width="100%" height="400"></v-img>
+            </v-sheet>
+          </v-row>
+        </div>
       </v-sheet>
     </v-container>
     <Footer />
@@ -40,6 +57,7 @@ export default {
   data() {
     return {
       items: [],
+      loading: false
     };
   },
   mounted() {
@@ -47,6 +65,7 @@ export default {
   },
   methods: {
     async getDetails() {
+      this.loading = true
       const image = await API.graphql(graphqlOperation(listGallerys));
       const imageList = image.data.listGallerys.items;
       if (imageList && imageList.length !== 0) {
@@ -57,6 +76,11 @@ export default {
           const arr = this.items.concat(e);
           this.items = _.uniqBy(arr, "id");
         });
+      }
+      if (this.items.length !== 0) {
+        this.loading = false;
+      } else {
+        this.loading = true;
       }
     }
   }

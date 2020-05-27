@@ -29,7 +29,7 @@
           <div class="display-1 mt-1 mb-1">{{ title }}</div>
           <div class="title mt-1">{{ subject }}</div>
           <v-divider class="my-5"></v-divider>
-          <img v-if="objectURL" :src="objectURL" height="450" width="100%" />
+          <img v-if="objectURL" :src="objectURL" height="500" width="100%" />
           <div class="mt-4">
             <blockquote>{{ content }}</blockquote>
           </div>
@@ -188,6 +188,7 @@ export default {
     async createBlog() {
       this.loading = true;
       const blogID = uuid.v4();
+      const date = moment(new Date()).fromNow();
       const data = {
         id: blogID,
         member: this.selectedUser,
@@ -195,7 +196,8 @@ export default {
         subject: this.subject,
         content: this.content,
         attachment: this.file.name ? this.file.name : null,
-        createdAt: new Date()
+        createdAt: new Date(),
+        updatedAt: date
       };
       await API.graphql(graphqlOperation(createBlog, { input: data }));
       // check if there is an image

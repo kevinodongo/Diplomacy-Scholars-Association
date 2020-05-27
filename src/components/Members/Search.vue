@@ -1,11 +1,17 @@
 <template>
   <div class="list-members">
     <Toolbar />
+    <v-sheet height="100" color="#FFF8E1" tile>
+      <v-container class="fill-height">
+        <v-row align="center">
+          <div style="font-size: 28px;" class="indigo--text font-weight-light">
+            Members of DIPSAK
+          </div>
+        </v-row>
+      </v-container>
+    </v-sheet>
     <v-container grid-list-xs>
       <v-card min-height="635" flat>
-        <div class="indigo--text title mt-4 ml-3 font-weight-regular">
-          Members of DIPSAK
-        </div>
         <v-card-title class="mt-4">
           <v-text-field
             outlined

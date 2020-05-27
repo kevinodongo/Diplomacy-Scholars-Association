@@ -4,7 +4,10 @@
     <v-sheet height="100" color="#FFF8E1" tile>
       <v-container class="fill-height">
         <v-row align="center">
-          <div class="display-1 indigo--text font-weight-light">
+          <div
+            style="font-size: 28px;"
+            class="indigo--text font-weight-light ml-3"
+          >
             About
           </div>
         </v-row>

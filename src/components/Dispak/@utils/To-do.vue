@@ -48,7 +48,8 @@
             <div class="display-1 font-weight-bold mt-1 mb-2">
               {{ object.title }}
             </div>
-            <img :src="object.attachment" height="300" width="100%" />
+            <img :src="object.attachment" height="500" width="100%" />
+            <div class="title mb-3 mt-2">{{ object.subject }}</div>
             <div>{{ object.content }}</div>
           </div>
         </v-card-text>
@@ -351,7 +352,7 @@ export default {
       // remove from array
       const index = this.publications.indexOf(item);
       const array = [...this.publications];
-      array.splice(index, -1);
+      array.splice(index, 1);
       this.publications = array;
       this.dialog1 = false;
       this.snackbar = true;
@@ -359,7 +360,6 @@ export default {
     },
     async createBlog(item) {
       this.loading = true;
-      const time = moment(item.createdAt).fromNow();
       const data = {
         id: uuid.v4(),
         member: item.member,
@@ -369,7 +369,7 @@ export default {
         image: item.attachment,
         publication: null,
         createdAt: item.createdAt,
-        updatedAt: time
+        updatedAt: item.updatedAt
       };
       //
       await API.graphql(graphqlOperation(createPublic, { input: data }));
@@ -381,7 +381,7 @@ export default {
       // remove from array
       const index = this.items.indexOf(item);
       const array = [...this.items];
-      array.splice(index, -1);
+      array.splice(index, 1);
       this.items = array;
       this.dialog = false;
       this.snackbar = true;
