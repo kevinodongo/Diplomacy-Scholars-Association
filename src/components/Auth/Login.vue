@@ -1,10 +1,10 @@
 <template>
   <div class="login">
     <Toolbar />
-    <v-card flat height="500">
+    <v-card flat height="635">
       <v-container class="fill-height" grid-list-xs>
         <v-row justify="center" align="center">
-          <v-col cols="12" sm="6" md="5">
+          <v-col cols="12" sm="6" md="6" lg="5">
             <v-card class="mt-5" elevation="1">
               <v-card-text class="pa-10">
                 <div class="title mb-4">Members Login</div>

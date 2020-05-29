@@ -74,7 +74,7 @@
           <img
             src="https://i.imgur.com/IK8G3cb.jpg"
             alt="logo"
-            height="90"
+            height="120"
             class="mt-2"
           />
         </v-row>
@@ -82,7 +82,7 @@
         <v-row justify="center">
           <div class="d-flex d-sm-none">
             <div
-              class="diplomacy-small indigo--text font-weight-black ml-2 mt-2 mb-2"
+              class="diplomacy-small indigo--text font-weight-black ml-2 mt-3 mb-4"
             >
               DIPLOMACY SCHOLARS ASSOCIATION OF KENYA
             </div>
@@ -103,7 +103,7 @@
       </v-sheet>
     </div>
     <div class="d-flex d-md-none">
-      <v-sheet dark color="indigo" tile width="100%" height="40"> </v-sheet>
+      <v-card dark color="indigo" tile width="100%" height="50"> </v-card>
     </div>
     <!--/end-->
     <!--Large Screen-->
@@ -126,63 +126,66 @@
         </v-row>
       </v-container>
     </v-sheet>
-    <v-app-bar color="indigo" dark class="d-none d-md-flex">
-      <v-col cols="1"></v-col>
-      <v-toolbar-items>
-        <v-btn text to="/">Home</v-btn>
-        <v-btn text to="/about-dipsak">About us</v-btn>
-        <v-menu open-on-hover bottom offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn text v-on="on">Members</v-btn>
-          </template>
-          <v-sheet width="200" dark>
-            <v-list-item
-              v-for="member in members"
-              :key="member.id"
-              dense
-              active-class="white--text"
-              :to="member.to"
-            >
-              <v-list-item-title v-text="member.title"></v-list-item-title>
-            </v-list-item>
-          </v-sheet>
-        </v-menu>
-        <v-menu open-on-hover bottom offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn text v-on="on">Publications</v-btn>
-          </template>
-          <v-sheet width="250" dark>
-            <v-list-item
-              v-for="publication in publications"
-              :key="publication.id"
-              dense
-              :to="publication.to"
-              active-class="white--text"
-            >
-              <v-list-item-title v-text="publication.title"></v-list-item-title>
-            </v-list-item>
-          </v-sheet>
-        </v-menu>
-        <v-menu open-on-hover bottom offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn text v-on="on">Media</v-btn>
-          </template>
-          <v-sheet width="200" dark>
-            <v-list-item
-              v-for="media in medias"
-              :key="media.id"
-              dense
-              :to="media.to"
-              active-class="white--text"
-            >
-              <v-list-item-title v-text="media.title"></v-list-item-title>
-            </v-list-item>
-          </v-sheet>
-        </v-menu>
-        <v-btn text to="/dipsak-contacts">Contact us</v-btn>
-        <v-btn text to="/dipsak-member-login">Members Login</v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
+    <div class="d-none d-md-flex">
+      <v-app-bar color="indigo" dark>
+        <v-card-text class="mx-auto text-center">
+          <v-btn text to="/">Home</v-btn>
+          <v-btn text to="/about-dipsak">About us</v-btn>
+          <v-menu open-on-hover bottom offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn text v-on="on">Members</v-btn>
+            </template>
+            <v-sheet width="200" dark>
+              <v-list-item
+                v-for="member in members"
+                :key="member.id"
+                dense
+                active-class="white--text"
+                :to="member.to"
+              >
+                <v-list-item-title v-text="member.title"></v-list-item-title>
+              </v-list-item>
+            </v-sheet>
+          </v-menu>
+          <v-menu open-on-hover bottom offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn text v-on="on">Publications</v-btn>
+            </template>
+            <v-sheet width="250" dark>
+              <v-list-item
+                v-for="publication in publications"
+                :key="publication.id"
+                dense
+                :to="publication.to"
+                active-class="white--text"
+              >
+                <v-list-item-title
+                  v-text="publication.title"
+                ></v-list-item-title>
+              </v-list-item>
+            </v-sheet>
+          </v-menu>
+          <v-menu open-on-hover bottom offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn text v-on="on">Media</v-btn>
+            </template>
+            <v-sheet width="200" dark>
+              <v-list-item
+                v-for="media in medias"
+                :key="media.id"
+                dense
+                :to="media.to"
+                active-class="white--text"
+              >
+                <v-list-item-title v-text="media.title"></v-list-item-title>
+              </v-list-item>
+            </v-sheet>
+          </v-menu>
+          <v-btn text to="/dipsak-contacts">Contact us</v-btn>
+          <v-btn text to="/dipsak-member-login">Members Login</v-btn>
+        </v-card-text>
+      </v-app-bar>
+    </div>
     <!--/ end-->
   </div>
 </template>
@@ -287,7 +290,7 @@ export default {
 
 <style lang="css">
 .diplomacy {
-  font-size: 40px;
+  font-size: 35px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .diplomacy-small {
@@ -295,7 +298,7 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .diplomacy-medium {
-  font-size: 23px;
+  font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .association {

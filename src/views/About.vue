@@ -1,7 +1,7 @@
 <template>
-  <div class="about-page">
+  <div class="about">
     <Toolbar />
-    <v-sheet height="100" color="#FFF8E1" tile>
+     <v-sheet height="100" color="#FFF8E1" tile>
       <v-container class="fill-height">
         <v-row align="center">
           <div
@@ -13,7 +13,7 @@
         </v-row>
       </v-container>
     </v-sheet>
-    <v-sheet min-height="635">
+    <v-card height="635">
       <v-container grid-list-xs>
         <div v-for="(item, index) in items" :key="index" class="mb-3">
           <div
@@ -24,7 +24,7 @@
           <div class="mt-1" v-text="item.subject"></div>
         </div>
       </v-container>
-    </v-sheet>
+    </v-card>
     <Footer />
   </div>
 </template>

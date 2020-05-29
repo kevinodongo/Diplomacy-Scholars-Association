@@ -302,9 +302,11 @@ export default {
       const publicationList = publication.data.listPublications.items;
       if (publicationList && publicationList.length !== 0) {
         publicationList.forEach(e => {
-          Storage.get(e.attachment).then(image => {
-            e.attachment = image;
-          });
+          if (e.attachment) {
+            Storage.get(e.attachment).then(image => {
+              e.attachment = image;
+            });
+          }
           const array = this.publications.concat(e);
           this.publications = _.orderBy(
             _.uniqBy(array, "id"),

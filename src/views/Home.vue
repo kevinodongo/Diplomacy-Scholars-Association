@@ -9,43 +9,41 @@
     >
       <v-icon dark>mdi-chevron-up</v-icon>
     </v-btn>
-    <div class="icon-bar">
-      <v-btn tile color="#3B5998" dark><v-icon>mdi-facebook</v-icon></v-btn>
-      <div class="mt-1">
-        <v-btn dark color="#55ACEE" tile><v-icon>mdi-twitter</v-icon></v-btn>
-      </div>
-    </div>
     <Toolbar />
-    <v-sheet tile>
-      <v-carousel :show-arrows="false" hide-delimiters cycle height="660">
+    <v-card tile flat>
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="650">
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
           :src="item.src"
         ></v-carousel-item>
       </v-carousel>
-    </v-sheet>
-    <v-sheet min-height="750" tile>
+    </v-card>
+    <v-card min-height="650">
       <v-container grid-list-xs>
-        <div class="text-center title-welcome indigo--text mt-10">
-          Welcome to Diplomacy Scholars Association of Kenya
-        </div>
-        <div class="welcome-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit fugiat
-          adipisci dolores voluptates reprehenderit. Labore fugit ullam iusto
-          nihil natus reprehenderit cupiditate culpa! Aliquam quis,
-          exercitationem error distinctio doloremque ut! Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Sit fugiat adipisci dolores
-          voluptates reprehenderit. Labore fugit ullam iusto nihil natus
-          reprehenderit cupiditate culpa! Aliquam quis, exercitationem error
-          distinctio doloremque
-        </div>
         <v-row>
+          <v-col cols="12">
+            <v-card min-height="150" flat tile>
+              <div class="text-center title-welcome indigo--text mt-10">
+                Welcome to Diplomacy Scholars Association of Kenya
+              </div>
+              <div class="welcome-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+                fugiat adipisci dolores voluptates reprehenderit. Labore fugit
+                ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam
+                quis, exercitationem error distinctio doloremque ut! Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci
+                dolores voluptates reprehenderit. Labore fugit ullam iusto nihil
+                natus reprehenderit cupiditate culpa! Aliquam quis,
+                exercitationem error distinctio doloremque
+              </div>
+            </v-card>
+          </v-col>
           <v-col cols="12" md="8">
             <div class="indigo--text title-welcome">
               Latest news & Publications
             </div>
-            <v-card min-height="400" elevation="1" tile>
+            <v-card min-height="400" tile flat>
               <div v-if="loading">
                 <v-sheet height="400">
                   <v-container class="fill-height">
@@ -63,35 +61,36 @@
               </div>
               <div v-else>
                 <v-card-text v-for="(n, index) in news" :key="index">
-                  <v-row no-gutters>
-                    <v-col cols="12" md="2">
-                      <v-sheet
-                        height="100"
-                        width="100"
-                        elevation="1"
-                        color="grey"
-                        v-if="n.image"
-                      >
-                        <img :src="n.image" width="100%" height="100" />
-                      </v-sheet>
-                      <v-sheet
-                        height="100"
-                        width="100"
-                        elevation="1"
-                        color="grey"
-                        v-if="n.publication"
-                      >
-                        <img
-                          src="https://i.imgur.com/IK8G3cb.jpg"
-                          width="100%"
+                  <v-row>
+                    <v-col cols="12" md="3" lg="2">
+                      <v-row justify="center">
+                        <v-sheet
                           height="100"
-                        />
-                      </v-sheet>
+                          width="100"
+                          elevation="1"
+                          color="grey"
+                          v-if="n.image"
+                        >
+                          <img :src="n.image" width="100%" height="100" />
+                        </v-sheet>
+                        <v-sheet
+                          height="100"
+                          width="100"
+                          elevation="1"
+                          color="grey"
+                          v-if="n.publication"
+                        >
+                          <img
+                            src="https://i.imgur.com/IK8G3cb.jpg"
+                            width="100%"
+                            height="100"
+                          />
+                        </v-sheet>
+                      </v-row>
                     </v-col>
-                    <v-col cols="12" md="10">
+                    <v-col cols="12" md="9" lg="10">
                       <div
-                        style="text-transform: uppercase"
-                        class="title font-weight-regular indigo--text"
+                        class="content-text indigo--text"
                         v-text="n.title"
                       ></div>
                       <div class="mt-1 content" v-text="n.content"></div>
@@ -115,13 +114,7 @@
             <div class="indigo--text title-welcome">
               News & Events
             </div>
-            <v-card
-              min-height="400"
-              width="350"
-              v-if="object"
-              elevation="1"
-              tile
-            >
+            <v-card min-height="400" width="350" v-if="object" flat tile>
               <div v-if="getting">
                 <v-sheet height="400">
                   <v-container class="fill-height">
@@ -161,21 +154,21 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-sheet>
-    <v-sheet>
+    </v-card>
+    <v-card flat tile>
       <v-row no-gutters>
         <v-col cols="12" md="3">
-          <v-sheet color="indigo" height="60" tile dark>
+          <v-card color="indigo" height="60" tile dark flat>
             <v-container class="fill-height" grid-list-xs>
               <v-row justify="center" align="center">
                 <div>UPCOMING EVENTS</div>
               </v-row>
             </v-container>
-          </v-sheet>
+          </v-card>
         </v-col>
         <v-col cols="12" md="9">
-          <v-sheet color="#FFF8E1" height="60" tile>
-            <v-container class="fill-height">
+          <v-card color="#FFF8E1" height="60" tile dark flat>
+            <v-container grid-list-xs class="fill-height">
               <v-row align="center" justify="center">
                 <div
                   class="indigo--text"
@@ -186,11 +179,11 @@
                 </div>
               </v-row>
             </v-container>
-          </v-sheet>
+          </v-card>
         </v-col>
       </v-row>
-    </v-sheet>
-    <v-sheet min-height="720" class="mx-auto" tile color="#E0E0E0">
+    </v-card>
+    <v-card min-height="720" tile color="#E0E0E0">
       <v-container fluid>
         <v-card-text class="text-center">
           <div class="font-weight-regular title mt-7 mb-3 indigo--text">
@@ -217,117 +210,73 @@
           </v-slide-item>
         </v-slide-group>
       </v-container>
-    </v-sheet>
-    <v-sheet min-height="400" color="indigo" dark tile>
+    </v-card>
+    <v-card min-height="350" color="indigo" tile>
       <v-container grid-list-xs>
-        <v-row class="mt-10">
+        <v-row style="margin-top: 6rem;">
           <v-col cols="12" md="8">
-            <div class="title font-weight-regular mb-3">
-              Subscribe to our mailing list
-            </div>
-            <v-text-field
-              single-line
-              outlined
-              dense=""
-              name="name"
-              v-model="name"
-              placeholder="First Name"
-            ></v-text-field>
-            <v-text-field
-              single-line
-              outlined
-              dense
-              name="name"
-              v-model="email"
-              placeholder="Email"
-            ></v-text-field>
-            <v-btn color="grey" dark @click="subscribe">subscribe</v-btn>
+            <v-card height="300" color="indigo" flat tile>
+              <div class="title font-weight-regular mb-3">
+                Subscribe to our mailing list
+              </div>
+              <v-text-field
+                single-line
+                outlined
+                dense=""
+                name="name"
+                v-model="name"
+                placeholder="First Name"
+              ></v-text-field>
+              <v-text-field
+                single-line
+                outlined
+                dense
+                name="name"
+                v-model="email"
+                placeholder="Email"
+              ></v-text-field>
+              <v-btn color="grey" dark @click="subscribe">subscribe</v-btn>
+            </v-card>
           </v-col>
           <v-col cols="12" md="4">
-            <v-sheet
-              elevation="2"
-              width="100%"
-              color="#37474F"
-              class="pa-3 mt-2"
-            >
-              <v-card-text class="text-center">
-                <div class="headline">Connect with us</div>
-                <div class="ma-2">
-                  <v-btn icon>
-                    <v-icon>mdi-facebook</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>mdi-twitter</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>mdi-youtube</v-icon>
-                  </v-btn>
-                </div>
-                <div class="font-weight-light">
-                  Get the latest updates from Africa Policy Institute and our
-                  staff around the web.
-                </div>
-              </v-card-text>
-            </v-sheet>
+            <v-card height="300" color="indigo" flat tile dark>
+              <v-sheet
+                elevation="2"
+                width="100%"
+                color="#37474F"
+                class="pa-3 mt-2"
+              >
+                <v-card-text class="text-center">
+                  <div class="headline">Connect with us</div>
+                  <div class="ma-2">
+                    <v-btn icon>
+                      <v-icon>mdi-facebook</v-icon>
+                    </v-btn>
+                    <v-btn icon>
+                      <v-icon>mdi-twitter</v-icon>
+                    </v-btn>
+                    <v-btn icon>
+                      <v-icon>mdi-youtube</v-icon>
+                    </v-btn>
+                  </div>
+                  <div class="font-weight-light">
+                    Get the latest updates from Africa Policy Institute and our
+                    staff around the web.
+                  </div>
+                </v-card-text>
+              </v-sheet>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
-    </v-sheet>
-    <v-sheet min-height="350" color="secondary" class="pa-3" dark tile>
-      <v-container class="fill-height" grid-list-xs>
-        <v-row class="mt-10">
-          <v-col cols="12" md="6">
-            <div class="about">Get connected with us</div>
-            <div class="mb-1 about-text">
-              <v-icon class="mr-1">mdi-map-marker</v-icon>
-              ADDRESS: Diplomacy Scholars Association of Kenya
-            </div>
-            <div class="mb-1 about-text">
-              <v-icon class="mr-1">mdi-phone</v-icon>
-              PHONE: (+254) 020 2728 444, 0726 243 005, 0780 496 588
-            </div>
-            <div class="mb-1 about-text">
-              <v-icon class="mr-1">mdi-email</v-icon>
-              EMAIL: nfo@dipsak.org
-            </div>
-          </v-col>
-          <v-col cols="12" md="6">
-            <div class="about">About Us</div>
-            <div class="about-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-              veniam quasi nihil soluta maiores quis beatae! Minus quidem
-              excepturi officia, impedit repudiandae dolorum natus? Nemo
-              consectetur dignissimos quos? Esse, modi.
-            </div>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="indigo" class="mt-5" dark>
-                <span
-                  class="font-weight-regular"
-                  style="text-transform: capitalize"
-                  >read more about us</span
-                >
-              </v-btn>
-            </v-card-actions>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-footer dark padless>
-      <v-card class="flex" flat tile>
-        <v-container grid-list-xs>
-          <div class="white--text text-end caption">
-            Copyright &copy; {{ new Date().getFullYear() }} —
-            <strong>Diplomacy Scholars Association of Kenya</strong>
-          </div>
-        </v-container>
-      </v-card>
-    </v-footer>
+    </v-card>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Toolbar from "../components/parts/Toolbar";
+import Footer from "../components/parts/Footer";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { createSubscriber } from "../graphql/mutations";
 import { listEvents, listPublics } from "../graphql/queries";
@@ -335,7 +284,7 @@ import Swal from "sweetalert2";
 import { uuid } from "vue-uuid";
 var _ = require("lodash");
 export default {
-  components: { Toolbar },
+  components: { Toolbar, Footer },
   data() {
     return {
       model: null,
@@ -392,7 +341,7 @@ export default {
     async getDetails() {
       // public
       this.loading = true;
-      this.getting = true
+      this.getting = true;
       const p = await API.graphql(graphqlOperation(listPublics));
       const publicList = p.data.listPublics.items;
       if (publicList && publicList.length !== 0) {
@@ -456,6 +405,36 @@ export default {
   right: 20px;
   z-index: 99;
 }
+.content-text {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.about {
+  font-size: 20px;
+  margin-bottom: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.about-text {
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.title-welcome {
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.2rem;
+  font-size: 21px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
 .welcome {
   font-size: 30px;
   font-weight: bold;
@@ -464,46 +443,8 @@ export default {
 .welcome-text {
   font-size: 18px;
   margin-top: 25px;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.6rem;
   text-align: justify;
-}
-.event {
-  font-size: 30px;
-  font-weight: 300;
-  margin-left: 10px;
-  color: white;
-  text-transform: uppercase;
-}
-.about {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.about-text {
-  font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.icon-bar {
-  position: fixed;
-  top: 10%;
-  right: 2px;
-  z-index: 99;
-}
-.content {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  font-size: 18;
-}
-.title-welcome {
-  text-transform: uppercase;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  letter-spacing: 0.2rem;
-  font-size: 21px;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
 }
 </style>
