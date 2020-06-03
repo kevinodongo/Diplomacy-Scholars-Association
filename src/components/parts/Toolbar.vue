@@ -64,7 +64,7 @@
     </v-navigation-drawer>
     <!--Small Screen-->
     <div class="d-flex d-md-none">
-      <v-sheet width="100%">
+      <v-sheet width="100%" class="bg">
         <div class="ml-3 mt-2">
           <v-btn elevation="1" color="white" fab small @click="drawer = true">
             <v-icon color="indigo">mdi-view-headline</v-icon>
@@ -72,7 +72,7 @@
         </div>
         <v-row justify="center">
           <img
-            src="https://i.imgur.com/IK8G3cb.jpg"
+            src="https://i.imgur.com/4gmrVqL.png"
             alt="logo"
             height="120"
             class="mt-2"
@@ -107,13 +107,13 @@
     </div>
     <!--/end-->
     <!--Large Screen-->
-    <v-sheet class="d-none d-md-flex">
+    <v-sheet class="d-none d-md-flex bg">
       <v-container fluid class="fill-height">
         <v-row justify="center">
           <img
-            src="https://i.imgur.com/IK8G3cb.jpg"
+            src="https://i.imgur.com/4gmrVqL.png"
             alt="logo"
-            height="130"
+            height="140"
             class="mt-3"
           />
         </v-row>
@@ -127,13 +127,16 @@
       </v-container>
     </v-sheet>
     <div class="d-none d-md-flex">
-      <v-app-bar color="indigo" dark>
+      <v-app-bar color="indigo" dark flat>
         <v-card-text class="mx-auto text-center">
           <v-btn text to="/">Home</v-btn>
           <v-btn text to="/about-dipsak">About us</v-btn>
-          <v-menu open-on-hover bottom offset-y>
+          <v-menu bottom offset-y nudge-bottom="12">
             <template v-slot:activator="{ on }">
-              <v-btn text v-on="on">Members</v-btn>
+              <v-btn text v-on="on"
+                >Members
+                <v-icon small class="ml-1">mdi-chevron-down</v-icon></v-btn
+              >
             </template>
             <v-sheet width="200" dark>
               <v-list-item
@@ -147,9 +150,13 @@
               </v-list-item>
             </v-sheet>
           </v-menu>
-          <v-menu open-on-hover bottom offset-y>
+          <v-menu bottom offset-y nudge-bottom="12">
             <template v-slot:activator="{ on }">
-              <v-btn text v-on="on">Publications</v-btn>
+              <v-btn text v-on="on"
+                >Publications<v-icon small class="ml-1"
+                  >mdi-chevron-down</v-icon
+                ></v-btn
+              >
             </template>
             <v-sheet width="250" dark>
               <v-list-item
@@ -165,9 +172,13 @@
               </v-list-item>
             </v-sheet>
           </v-menu>
-          <v-menu open-on-hover bottom offset-y>
+          <v-menu bottom offset-y nudge-bottom="12">
             <template v-slot:activator="{ on }">
-              <v-btn text v-on="on">Media</v-btn>
+              <v-btn text v-on="on"
+                >Media<v-icon small class="ml-1"
+                  >mdi-chevron-down</v-icon
+                ></v-btn
+              >
             </template>
             <v-sheet width="200" dark>
               <v-list-item
@@ -314,5 +325,13 @@ export default {
 .contact {
   font-size: 12px;
   color: white;
+}
+.bg {
+  background-image: radial-gradient(
+    circle,
+    rgb(255, 255, 255),
+    rgb(201, 201, 191),
+    rgb(123, 158, 123)
+  );
 }
 </style>

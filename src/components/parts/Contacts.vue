@@ -2,28 +2,23 @@
   <div class="contacts">
     <Toolbar />
     <v-container grid-list-xs>
-      <v-row>
+      <v-row class="_contact">
         <v-col cols="12" md="6">
           <div style="font-size: 30px;">Contacts</div>
           <div class="mt-2">
             <v-icon class="mr-1" small>mdi-map-marker</v-icon>
             <span class="font-weight-bold">Address:</span>
-            <span class="ml-3"
-              >Royal Office, Ground Floor, Near K1 Club House, Westlands,
-              Nairobi. P. O. Box 13402 - 00800 Nairobi, Kenya</span
-            >
+            <span class="ml-3">Gallant Mall</span>
           </div>
           <div class="mt-2">
             <v-icon class="mr-1" small>mdi-phone</v-icon>
             <span class="font-weight-bold">Phone:</span>
-            <span class="ml-3 mb-1"
-              >(+254) 020 2728 444, 0726 243 005, 0780 496 588</span
-            >
+            <span class="ml-3 mb-1">(+254) 706 374224 / 729 463996</span>
           </div>
           <div class="mt-2">
             <v-icon class="mr-1" small>mdi-email</v-icon>
             <span class="font-weight-bold">Email:</span>
-            <span class="ml-3 primary--text">info@diplomacyscholars.com</span>
+            <span class="ml-3 primary--text">info@dipsak.or.ke</span>
           </div>
           <v-sheet class="mt-3">
             <iframe
@@ -39,11 +34,11 @@
           </v-sheet>
         </v-col>
         <v-col cols="12" md="6">
-          <div class="font-weight-light">
+          <div class="font-weight-light mt-5">
             For any question, comments or enquiries with regards to Diplomacy
             Scholars Association of Kenya, fill in the form below:
           </div>
-          <div class="caption font-weight-bold mt-2">
+          <div class="caption font-weight-bold mt-3">
             Username <span class="red--text">*</span>
           </div>
           <v-text-field
@@ -135,8 +130,8 @@ export default {
         content: this.item.content,
         createdAt: new Date()
       };
-      await API.graphql(graphqlOperation(createContact, { input: data }))
-      this.item = {}
+      await API.graphql(graphqlOperation(createContact, { input: data }));
+      this.item = {};
       Swal.fire({
         text: "Thank you for Contacting us",
         icon: "success",
@@ -147,3 +142,10 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+._contact {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+</style>

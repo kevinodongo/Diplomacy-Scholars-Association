@@ -28,14 +28,15 @@
                 Welcome to Diplomacy Scholars Association of Kenya
               </div>
               <div class="welcome-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                fugiat adipisci dolores voluptates reprehenderit. Labore fugit
-                ullam iusto nihil natus reprehenderit cupiditate culpa! Aliquam
-                quis, exercitationem error distinctio doloremque ut! Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Sit fugiat adipisci
-                dolores voluptates reprehenderit. Labore fugit ullam iusto nihil
-                natus reprehenderit cupiditate culpa! Aliquam quis,
-                exercitationem error distinctio doloremque
+                DIPSAK was founded in 2019 by a group of scholars based at the
+                University of Nairobi. It was registered as an Association in
+                September 2019. The Association’s overall objective is to
+                provide a platform for research, publishing, scholarly debates
+                and interaction with policy makers and the society at large in
+                the area of international affairs. By the end of 2019, DIPSAK
+                had more than 60 fully registered and paid-up members (Founding
+                Members) comprising largely of students and scholars based in
+                different universities.
               </div>
             </v-card>
           </v-col>
@@ -47,14 +48,8 @@
               <div v-if="loading">
                 <v-sheet height="400">
                   <v-container class="fill-height">
-                    <v-row justify="center" align="center">
-                      <v-sheet height="100" width="100">
-                        <img
-                          src="https://i.imgur.com/IK8G3cb.jpg"
-                          width="100%"
-                          height="100"
-                        />
-                      </v-sheet>
+                    <v-row justify="start" align="center">
+                      <v-sheet height="150" width="150"> </v-sheet>
                     </v-row>
                   </v-container>
                 </v-sheet>
@@ -119,13 +114,7 @@
                 <v-sheet height="400">
                   <v-container class="fill-height">
                     <v-row justify="center" align="center">
-                      <v-sheet height="100" width="100">
-                        <img
-                          src="https://i.imgur.com/IK8G3cb.jpg"
-                          width="100%"
-                          height="100"
-                        />
-                      </v-sheet>
+                      <v-sheet height="150" width="150"> </v-sheet>
                     </v-row>
                   </v-container>
                 </v-sheet>
@@ -183,10 +172,10 @@
         </v-col>
       </v-row>
     </v-card>
-    <v-card min-height="720" tile color="#E0E0E0">
+    <v-card min-height="750" tile color="#E0E0E0">
       <v-container fluid>
         <v-card-text class="text-center">
-          <div class="font-weight-regular title mt-7 mb-3 indigo--text">
+          <div class="font-weight-bold title mt-7 mb-5 indigo--text">
             PAST EVENTS
           </div>
         </v-card-text>
@@ -198,14 +187,14 @@
           >
             <v-sheet
               class="mx-1"
-              height="500"
-              width="550"
+              height="550"
+              width="600"
               :input-value="active"
               @click="toggle"
               elevation="4"
               tile
             >
-              <img :src="n.src" width="550" height="500" />
+              <img :src="n.src" width="600" height="550" />
             </v-sheet>
           </v-slide-item>
         </v-slide-group>
@@ -216,20 +205,18 @@
         <v-row style="margin-top: 6rem;">
           <v-col cols="12" md="8">
             <v-card height="300" color="indigo" flat tile>
-              <div class="title font-weight-regular mb-3">
-                Subscribe to our mailing list
+              <div class="headline font-weight-regular mb-4 white--text">
+                Subscribe To Our Mailing List
               </div>
               <v-text-field
-                single-line
-                outlined
-                dense=""
+                solo
+                dense
                 name="name"
                 v-model="name"
                 placeholder="First Name"
               ></v-text-field>
               <v-text-field
-                single-line
-                outlined
+                solo
                 dense
                 name="name"
                 v-model="email"
@@ -241,9 +228,9 @@
           <v-col cols="12" md="4">
             <v-card height="300" color="indigo" flat tile dark>
               <v-sheet
-                elevation="2"
+                elevation="1"
                 width="100%"
-                color="#37474F"
+                color="black"
                 class="pa-3 mt-2"
               >
                 <v-card-text class="text-center">
@@ -259,9 +246,9 @@
                       <v-icon>mdi-youtube</v-icon>
                     </v-btn>
                   </div>
-                  <div class="font-weight-light">
-                    Get the latest updates from Africa Policy Institute and our
-                    staff around the web.
+                  <div class="font-weight-regular" style="letter-spacing: 2px;">
+                    Get the latest updates from Diplomacy Scholars Association
+                    of Kenya.
                   </div>
                 </v-card-text>
               </v-sheet>
@@ -305,11 +292,9 @@ export default {
         }
       ], // carousel
       events: [
-        { src: "https://i.imgur.com/7OrdCoj.jpg" },
-        { src: "https://i.imgur.com/OEvy19U.jpg" },
-        { src: "https://i.imgur.com/1xZBiR0.jpg" },
-        { src: "https://i.imgur.com/Xb2ngez.jpg" },
-        { src: "https://i.imgur.com/MgLkT47.jpg" }
+        { src: "https://i.imgur.com/soMYtoo.jpg" },
+        { src: "https://i.imgur.com/uLotJwu.jpg" },
+        { src: "https://i.imgur.com/UCSrxyO.jpg" }
       ], // events pictures
       email: "",
       name: "",

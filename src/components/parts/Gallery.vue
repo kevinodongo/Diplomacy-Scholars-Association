@@ -1,17 +1,17 @@
 <template>
   <div class="gallery">
     <Toolbar />
-    <v-sheet height="100" color="#FFF8E1" tile>
+    <v-sheet height="100" color="#EEEEEE" tile>
       <v-container class="fill-height">
         <v-row align="center">
-          <div style="font-size: 30px;" class="indigo--text font-weight-light">
+          <div style="font-size: 26px;" class="indigo--text font-weight-light">
             Gallery
           </div>
         </v-row>
       </v-container>
     </v-sheet>
     <v-container grid-list-xs>
-      <v-sheet min-height="650">
+      <v-sheet min-height="635">
         <div v-if="loading">
           <v-sheet height="600">
             <v-container class="fill-height">
@@ -31,7 +31,7 @@
           <v-row>
             <v-sheet
               class="ma-1"
-              height="400"
+              height="350"
               width="280"
               v-for="item in items"
               :key="item.id"

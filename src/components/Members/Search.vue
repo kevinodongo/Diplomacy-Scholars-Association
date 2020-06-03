@@ -1,10 +1,10 @@
 <template>
   <div class="list-members">
     <Toolbar />
-    <v-sheet height="100" color="#FFF8E1" tile>
+    <v-sheet height="100" color="#EEEEEE" tile>
       <v-container class="fill-height">
         <v-row align="center">
-          <div style="font-size: 28px;" class="indigo--text font-weight-light">
+          <div style="font-size: 26px;" class="indigo--text font-weight-light">
             Members of DIPSAK
           </div>
         </v-row>
