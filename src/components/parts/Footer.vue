@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <v-footer padless dark absolute>
-      <v-card class="flex" flat tile color="black">
+      <v-card class="flex" flat tile color="#263238">
         <v-container grid-list-xs>
           <div class="white--text text-end footer-text">
             Copyright &copy; {{ new Date().getFullYear() }} —

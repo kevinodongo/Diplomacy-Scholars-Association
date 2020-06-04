@@ -11,7 +11,7 @@
     </v-btn>
     <Toolbar />
     <v-card tile flat>
-      <v-carousel :show-arrows="false" hide-delimiters cycle height="650">
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="700">
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
@@ -179,25 +179,26 @@
             PAST EVENTS
           </div>
         </v-card-text>
-        <v-slide-group multiple show-arrows>
-          <v-slide-item
-            v-for="n in events"
-            :key="n.id"
-            v-slot:default="{ active, toggle }"
-          >
-            <v-sheet
-              class="mx-1"
-              height="550"
-              width="600"
-              :input-value="active"
-              @click="toggle"
-              elevation="4"
-              tile
-            >
-              <img :src="n.src" width="600" height="550" />
+        <v-row justify="center">
+          <v-col cols="12" md="5">
+            <v-sheet height="550" width="100%" elevation="10" tile>
+              <v-img
+                src="https://i.imgur.com/soMYtoo.jpg"
+                height="550"
+                width="100%"
+              ></v-img>
             </v-sheet>
-          </v-slide-item>
-        </v-slide-group>
+          </v-col>
+          <v-col cols="12" md="5">
+            <v-sheet height="550" width="100%" elevation="10" tile>
+              <v-img
+                src="https://i.imgur.com/uLotJwu.jpg"
+                height="550"
+                width="100%"
+              ></v-img>
+            </v-sheet>
+          </v-col>
+        </v-row>
       </v-container>
     </v-card>
     <v-card min-height="350" color="indigo" tile>
@@ -230,7 +231,7 @@
               <v-sheet
                 elevation="1"
                 width="100%"
-                color="black"
+                color="#263238"
                 class="pa-3 mt-2"
               >
                 <v-card-text class="text-center">

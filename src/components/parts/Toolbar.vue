@@ -107,7 +107,7 @@
     </div>
     <!--/end-->
     <!--Large Screen-->
-    <v-sheet class="d-none d-md-flex bg">
+    <v-sheet class="d-none d-md-flex bg" tile>
       <v-container fluid class="fill-height">
         <v-row justify="center">
           <img
