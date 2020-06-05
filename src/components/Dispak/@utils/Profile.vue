@@ -5,49 +5,6 @@
       :indeterminate="loading"
       color="indigo"
     ></v-progress-linear>
-    <!--dialog-->
-    <v-dialog v-model="dialog" width="500">
-      <v-card>
-        <v-toolbar flat>
-          <div class="font-weight-regular">CONFIRM USER</div>
-          <v-spacer></v-spacer>
-          <v-btn @click="dialog = false" icon><v-icon>mdi-close</v-icon></v-btn>
-        </v-toolbar>
-        <v-divider></v-divider>
-        <div v-if="memberUser != null">
-          <v-sheet class="pa-3">
-            <v-card-text>
-              <v-alert outlined color="indigo">
-                <div>
-                  Please check the email you provided and get a code to confirm
-                  the new user created
-                </div>
-              </v-alert>
-              <v-text-field
-                single-line
-                outlined
-                disabled
-                v-model="memberUser"
-                name="name"
-                placeholder="Member name"
-              ></v-text-field>
-              <v-text-field
-                single-line
-                outlined
-                v-model="code"
-                name="name"
-                placeholder="Confirmation Code"
-              ></v-text-field>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn text @click="createUser">confirm</v-btn>
-            </v-card-actions>
-          </v-sheet>
-        </div>
-      </v-card>
-    </v-dialog>
-    <!--/end-->
     <!--snackbars-->
     <v-snackbar v-model="snackbar">
       You have successfully updated education details
@@ -67,12 +24,6 @@
         Close
       </v-btn>
     </v-snackbar>
-    <v-snackbar v-model="snackbar3">
-      You have successfully created a user
-      <v-btn color="pink" text @click="snackbar3 = false">
-        Close
-      </v-btn>
-    </v-snackbar>
     <!--/end-->
     <v-container grid-list-xs>
       <v-row justify="center">
@@ -85,41 +36,7 @@
             </v-toolbar>
             <v-card-text>
               <v-row>
-                <v-col cols="12" md="4">
-                  <v-row justify="center">
-                    <v-avatar
-                      class="mt-3"
-                      color="grey"
-                      size="164"
-                      v-if="objectURL"
-                    >
-                      <v-img :src="objectURL"> </v-img>
-                    </v-avatar>
-                    <v-avatar class="mt-3" color="grey" size="164" v-else>
-                      <v-img src="https://i.imgur.com/qvnZqVr.jpg"> </v-img>
-                    </v-avatar>
-                  </v-row>
-                  <div class="text-center mt-4" v-if="objectURL">
-                    <v-btn color="error" outlined @click="removeImage">
-                      remove photo
-                    </v-btn>
-                  </div>
-                  <div class="text-center mt-4" v-else>
-                    <v-btn color="indigo" outlined>
-                      <div class="font-weight-regular">
-                        CHOOSE A PHOTO
-                      </div>
-                      <div class="upload-profile">
-                        <input
-                          type="file"
-                          name="profile"
-                          @change="uploadImage"
-                        />
-                      </div>
-                    </v-btn>
-                  </div>
-                </v-col>
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="6">
                   <div class="caption font-weight-bold mb-1">
                     First Name <span class="red--text">*</span>
                   </div>
@@ -130,6 +47,8 @@
                     name="firstname"
                     v-model="item.firstName"
                   ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
                   <div class="caption font-weight-bold mb-1">
                     Other names <span class="red--text">*</span>
                   </div>
@@ -140,23 +59,8 @@
                     name="othernames"
                     v-model="item.otherNames"
                   ></v-text-field>
-                  <div class="caption font-weight-bold mb-1">
-                    Status <span class="red--text">*</span>
-                  </div>
-                  <v-overflow-btn
-                    small-chips
-                    outlined
-                    single-line
-                    dense
-                    hint="This is required"
-                    persistent-hint
-                    deletable-chips
-                    v-model="selectedStatus"
-                    :items="status"
-                    target="#dropdown-example"
-                  ></v-overflow-btn>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12">
                   <div class="caption font-weight-bold mb-1">
                     Email <span class="red--text">*</span>
                   </div>
@@ -182,21 +86,6 @@
                     deletable-chips
                     v-model="selectedMembership"
                     :items="membership"
-                    target="#dropdown-example"
-                  ></v-overflow-btn>
-                </v-col>
-                <v-col cols="12" md="6">
-                  <div class="caption font-weight-bold mb-1">
-                    Role <span class="red--text">*</span>
-                  </div>
-                  <v-overflow-btn
-                    small-chips
-                    outlined
-                    single-line
-                    dense
-                    deletable-chips
-                    v-model="selectedRole"
-                    :items="roles"
                     target="#dropdown-example"
                   ></v-overflow-btn>
                 </v-col>
@@ -408,6 +297,7 @@
 </template>
 
 <script>
+/*eslint-disable*/
 import { Auth, API, graphqlOperation, Storage } from "aws-amplify";
 import { uuid } from "vue-uuid";
 import moment from "moment";
@@ -418,7 +308,6 @@ import {
 } from "../../../graphql/mutations";
 import { listUsers } from "../../../graphql/queries";
 import { onCreateUser } from "../../../graphql/subscriptions";
-//import { CognitoIdentityServiceProvider } from "aws-sdk";
 var _ = require("lodash");
 export default {
   async beforeCreate() {
@@ -427,19 +316,15 @@ export default {
   data() {
     return {
       selectedStatus: null,
-      objectURL: null,
       loading: false,
       selectedGender: null,
-      selectedRole: null,
       selectedMembership: null,
       show: false,
       user: {},
       code: "",
-      dialog: false,
       drawer: false,
       item: {},
       member: "",
-      roles: [{ text: "Member", value: "Member" }],
       membership: [
         { text: "Founding Member", value: "Founding Member" },
         { text: "Licentiate Member", value: "Licentiate Member" },
@@ -454,18 +339,10 @@ export default {
         },
         { text: "Female", value: "Female" }
       ],
-      status: [
-        {
-          text: "Active",
-          value: "Active"
-        },
-        { text: "InActive", value: "InActive" }
-      ],
       date1: "",
       date: "",
       menu: false,
       menu1: false,
-      memberUser: null,
       objects: [], // all members
       selectedMember: null,
       snackbar: false,
@@ -473,8 +350,6 @@ export default {
       snackbar2: false,
       snackbar3: false,
       timeout: 2000,
-      file: null,
-      newMemberID: null,
       error: ""
     };
   },
@@ -493,7 +368,7 @@ export default {
   methods: {
     /*list members*/
     async getDetails() {
-      const member = await API.graphql(graphqlOperation(listUsers));
+      const member = await API.graphql(graphqlOperation(listUsers, { limit: 60}));
       const memberList = member.data.listUsers.items;
       if (memberList && memberList.length !== 0) {
         memberList.forEach(e => {
@@ -525,40 +400,18 @@ export default {
     /*sign up function*/
     async signUp() {
       this.loading = true;
-      const username = this.item.firstName
-        ? this.item.firstName.toLowerCase()
-        : null;
-      if (username !== null) {
-        this.memberUser = username;
-      }
+      const username = this.item.firstName.toLowerCase()
       const email = this.item.email;
       const password = this.item.password;
-      const roles = this.selectedRole ? this.selectedRole.toLowerCase() : null;
-      await Auth.signUp({
+      const roles = "member"
+      const response = await Auth.signUp({
         username,
         password,
         attributes: { email, "custom:roles": roles }
       })
-        .then(data => {
-          this.newMemberID = data.userSub;
-        })
-        .catch(error => {
-          this.error = error;
-        });
-      this.dialog = true;
-      this.loading = false;
-    },
-    async createUser() {
-      this.loading = true;
-      // confirm user
-      const username = this.memberUser;
-      const code = this.code;
-      this.memberUser = "";
-      this.code = "";
-      await Auth.confirmSignUp(username, code);
-      // send to the db
+      // update db
       const data = {
-        id: this.newMemberID,
+        id: response.userSub,
         username: this.item.firstName + " " + this.item.otherNames,
         email: this.item.email,
         membership: this.selectedMembership,
@@ -568,41 +421,15 @@ export default {
         address: this.item.address,
         nationality: this.item.nationality,
         identification: this.item.identification,
-        status: this.selectedStatus,
+        status: "Active",
         createdAt: new Date()
       };
       await API.graphql(graphqlOperation(createUser, { input: data }));
-      // check if there is an image
-      if (this.file !== null) {
-        const key = this.file.name;
-        const options = {
-          ContentType: this.file.type
-        };
-        // send to s3
-        await Storage.put(key, this.file, options);
-        // send to db
-        const attach = {
-          id: uuid.v4(),
-          memberID: this.newMemberID, // user id
-          attachment: this.file.name, // attachment
-          createdAt: new Date()
-        };
-        await API.graphql(
-          graphqlOperation(createAttachment, { input: attach })
-        );
-      }
-      this.item = {};
-      this.file = null;
-      this.objectURL = null;
-      this.selectedRole = null;
+      this.item = {}
+      this.date = "";
       this.selectedMembership = null;
       this.selectedGender = null;
-      this.selectedStatus = null;
-      this.newMemberID = null;
-      this.date = "";
-      this.dialog = false;
       this.loading = false;
-      this.snackbar3 = true;
     },
     /*create education*/
     async createEducation() {
@@ -623,18 +450,6 @@ export default {
       this.loading = false;
       this.snackbar = true;
     },
-    /*upload photo*/
-    async uploadImage(e) {
-      this.file = e.target.files[0];
-      this.objectURL = URL.createObjectURL(this.file);
-      this.snackbar1 = true;
-    },
-    /*remove file*/
-    removeImage() {
-      this.objectURL = null;
-      this.file = "";
-      this.snackbar2 = true;
-    }
   }
 };
 </script>

@@ -110,34 +110,13 @@
               News & Events
             </div>
             <v-card min-height="400" width="350" v-if="object" flat tile>
-              <div v-if="getting">
-                <v-sheet height="400">
-                  <v-container class="fill-height">
-                    <v-row justify="center" align="center">
-                      <v-sheet height="150" width="150"> </v-sheet>
-                    </v-row>
-                  </v-container>
-                </v-sheet>
-              </div>
-              <div v-else>
-                <img
-                  :src="object.attachment"
+              <div>
+                <v-img
+                  src="https://i.imgur.com/HDyJSxo.jpg"
                   alt="eventimage"
-                  height="200"
+                  height="400"
                   width="100%"
-                />
-                <v-card-title primary-title>
-                  {{ object.title }}
-                </v-card-title>
-                <v-card-text>
-                  <div class="content">{{ object.content }}</div>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn to="/upcoming-events" color="orange" text
-                    >read more</v-btn
-                  >
-                </v-card-actions>
+                ></v-img>
               </div>
             </v-card>
           </v-col>
@@ -164,7 +143,7 @@
                   style="font-size: 18px;"
                   transition="dialog-transition"
                 >
-                  {{ object.title }} | {{ object.updatedAt }} |
+                  Dipsak Webinar | June 5th 2019 | Nairobi |
                 </div>
               </v-row>
             </v-container>

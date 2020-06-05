@@ -36,7 +36,7 @@
       </v-card>
     </v-dialog>
     <v-navigation-drawer height="100%" app v-model="drawer" clipped>
-      <v-sheet>
+      <v-sheet >
         <v-row justify="center">
           <v-avatar class="mt-3" color="grey" size="140" v-if="objectURL">
             <v-img :src="objectURL"></v-img>
@@ -62,14 +62,11 @@
               </v-btn>
             </div>
             <v-divider class="my-2"></v-divider>
-            <div
-              style="text-transform: uppercase"
-              class="title font-weight-light"
-            >
+            <div style="text-transform: uppercase" class="font-weight-light">
               {{ logged.username }}
             </div>
             <div class="mt-2">
-              <span>{{ logged.email }}</span>
+              <span class="caption primary--text">{{ logged.email }}</span>
               <span>
                 <v-btn icon @click="dialog = true"
                   ><v-icon small>mdi-pencil-outline</v-icon></v-btn
@@ -77,9 +74,7 @@
               </span>
             </div>
             <div class="mt-2">
-              <v-btn small outlined color="indigo">{{
-                logged.membership
-              }}</v-btn>
+              <v-btn x-small dark color="indigo">{{ logged.membership }}</v-btn>
             </div>
           </v-card-text>
         </v-row>
@@ -171,7 +166,7 @@
       </v-menu>
     </v-toolbar>
     <v-divider></v-divider>
-     <v-progress-linear
+    <v-progress-linear
       :active="loading"
       :indeterminate="loading"
       color="indigo"
@@ -216,7 +211,9 @@ export default {
   },
   methods: {
     async getDetails() {
-      const info = await API.graphql(graphqlOperation(listUsers));
+      const info = await API.graphql(
+        graphqlOperation(listUsers, { limit: 60 })
+      );
       const infoList = info.data.listUsers.items;
       if (infoList && infoList.length !== 0) {
         infoList.forEach(e => {
@@ -225,7 +222,9 @@ export default {
           }
         });
       }
-      const attach = await API.graphql(graphqlOperation(listAttachments));
+      const attach = await API.graphql(
+        graphqlOperation(listAttachments, { limit: 100 })
+      );
       const attachList = attach.data.listAttachments.items;
       if (attachList && attachList.length !== 0) {
         const object = attachList.filter(e => {

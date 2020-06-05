@@ -101,6 +101,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-sheet height="80" flat tile></v-sheet>
     <Footer />
   </div>
 </template>

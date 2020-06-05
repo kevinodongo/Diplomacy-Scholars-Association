@@ -56,7 +56,9 @@ export default {
   methods: {
     async getDetails() {
       this.loading = true;
-      const cert = await API.graphql(graphqlOperation(listCertificates));
+      const cert = await API.graphql(
+        graphqlOperation(listCertificates, { limit: 60 })
+      );
       const certList = cert.data.listCertificates.items;
       if (certList && certList.length !== 0) {
         const object = certList.filter(c => {

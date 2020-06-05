@@ -66,8 +66,14 @@
     <div class="d-flex d-md-none">
       <v-sheet width="100%" class="bg">
         <div class="ml-3 mt-2">
-          <v-btn elevation="1" color="white" fab small @click="drawer = true">
-            <v-icon color="indigo">mdi-view-headline</v-icon>
+          <v-btn
+            elevation="1"
+            fab
+            small
+            @click="drawer = true"
+            color="rgb(123, 158, 123)"
+          >
+            <v-icon color="white">mdi-view-headline</v-icon>
           </v-btn>
         </div>
         <v-row justify="center">
@@ -248,11 +254,11 @@ export default {
           children: [
             {
               text: "Search",
-              to: "dipsak-members"
+              to: "dipsak-members-search"
             },
             {
               text: "Board Members",
-              to: "dipsak-members-search"
+              to: "dipsak-members"
             }
           ]
         },
@@ -275,10 +281,6 @@ export default {
             {
               text: "Upcoming Events",
               to: "upcoming-events"
-            },
-            {
-              text: "News",
-              to: "news"
             },
             {
               text: "Gallery",

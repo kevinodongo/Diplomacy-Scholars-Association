@@ -144,7 +144,9 @@ export default {
   methods: {
     async getDetails() {
       this.loading = true;
-      const member = await API.graphql(graphqlOperation(listUsers));
+      const member = await API.graphql(
+        graphqlOperation(listUsers, { limit: 60 })
+      );
       const memberList = member.data.listUsers.items;
       if (memberList && memberList.length !== 0) {
         memberList.forEach(i => {

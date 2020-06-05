@@ -29,6 +29,7 @@
           </template>
         </v-data-table>
       </v-card>
+      <v-card height="100" flat> </v-card>
     </v-container>
     <Footer />
   </div>
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     async getDetails() {
-      const member = await API.graphql(graphqlOperation(listUsers));
+      const member = await API.graphql(graphqlOperation(listUsers, { limit: 60}));
       const memberList = member.data.listUsers.items;
       if (memberList && memberList.length !== 0) {
         memberList.forEach(e => {

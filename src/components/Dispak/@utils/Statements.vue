@@ -47,7 +47,9 @@ export default {
   methods: {
     async getDetails() {
       this.loading = true;
-      const info = await API.graphql(graphqlOperation(listUsers));
+      const info = await API.graphql(
+        graphqlOperation(listUsers, { limit: 60 })
+      );
       const infoList = info.data.listUsers.items;
       if (infoList && infoList.length !== 0) {
         infoList.forEach(e => {
