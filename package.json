@@ -15,7 +15,7 @@
     "aws-amplify-vue": "^2.1.1",
     "aws-sdk": "^2.683.0",
     "core-js": "^3.6.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.26.0",
     "sweetalert2": "^9.13.0",
     "uuid": "^8.1.0",
